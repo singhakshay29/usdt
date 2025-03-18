@@ -1,0 +1,209 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap');
+
+
+.container {
+    display: flex;
+    color: white;
+    min-height: 100vh;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    justify-content: space-between;
+    font-family: 'Figtree', sans-serif;
+    align-items: center;
+    background-color: #111;
+   gap: 10;
+  }
+  
+  .header-section {
+    max-width: 600px;
+    margin-bottom: 4rem;
+    gap: 4rem;
+  }
+  
+  .subtitle {
+    color: #A3FF00;
+  }
+  
+  .title {
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+  
+  .body-text {
+    margin-top: 2rem;
+    color: #FFFFFF99;
+  }
+  
+  .body-text-secondary {
+    margin-top: 1rem;
+    color: #FFFFFF99;
+  }
+  
+  .sell-box {
+    padding: 20px;
+    width: 100%;
+    max-width: 545px;
+    height: 160px;
+    border-radius: 20px;
+    background-color: #a7e92d;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sell-box h3 {
+    font-weight: 600;
+    color: #111;
+  }
+  
+  .input-field {
+    background: transparent;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right;
+    border: none;
+    outline: none;
+    width: 100%;
+  }
+  
+  .input-icon {
+    position: absolute;
+    color: rgba(17, 17, 17, 0.5);
+    font-size: 20px;
+  }
+  
+  /* Receive Box */
+  .receive-box {
+    padding: 20px;
+    width: 100%;
+    max-width: 545px;
+    height: 160px;
+    border-radius: 20px;
+    background-color: rgba(244, 244, 244, 0.12);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .receive-box h3 {
+    font-weight: 600;
+    color: #f4f4f4;
+  }
+  
+  .receive-box span {
+    color: rgba(244, 244, 244, 0.5);
+    font-size: 14px;
+  }
+  
+  /* Button */
+  .continue-button {
+    margin-top: 12px;
+    padding: 12px;
+    width: 100%;
+    max-width: 545px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.25);
+    transition: background 0.3s ease;
+  }
+  
+  .continue-button.enabled {
+    background-color: #a9ea2e;
+    color: black;
+  }
+  
+  .continue-button.disabled {
+    background-color: rgba(244, 244, 244, 0.5);
+    cursor: not-allowed;
+  }
+  
+  /* Responsive Styles */
+@media (max-width: 1200px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 4rem;
+  }
+  .sell-box, .receive-box {
+    max-width: 450px;
+    height: auto;
+    padding: 15px;
+  }
+  .continue-button {
+    max-width: 450px;
+    height: 44px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .header-section {
+    margin-bottom: 2rem;
+  }
+  .sell-box, .receive-box {
+    max-width: 400px;
+  }
+  .input-field {
+    font-size: 20px;
+  }
+  .continue-button {
+    max-width: 400px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  .header-section {
+    max-width: 100%;
+    text-align: center;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .body-text, .body-text-secondary {
+    font-size: 1rem;
+  }
+  .sell-box, .receive-box {
+    max-width: 100%;
+    padding: 12px;
+  }
+  .input-field {
+    font-size: 18px;
+  }
+  .continue-button {
+    width: 100%;
+    font-size: 13px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+  }
+  .title {
+    font-size: 1.25rem;
+  }
+  .body-text, .body-text-secondary {
+    font-size: 0.9rem;
+  }
+  .sell-box, .receive-box {
+    padding: 10px;
+  }
+  .input-field {
+    font-size: 16px;
+  }
+  .continue-button {
+    font-size: 12px;
+    height: 40px;
+  }
+}
