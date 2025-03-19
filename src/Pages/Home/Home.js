@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -6,7 +6,6 @@ import {
   TextField,
   Button,
   CardContent,
-  Container,
 } from "@mui/material";
 import "./Home.css";
 import { FaDollarSign, FaInfoCircle, FaRupeeSign } from "react-icons/fa";
@@ -19,74 +18,41 @@ import PayoutSteps from "../PayoutSteps";
 import TestimonialCarousel from "../TestimonialCarousel";
 import FAQSection from "../FAQSection";
 import OffRampSection from "../OffRampSection";
+import NorthEastIcon from '@mui/icons-material/NorthEast';
 
 const Home = () => {
-  const {
-    globalCurrency,
-    globalCoin,
-    globalYouGet,
-    globalQuoteData,
-    setGlobalYouGet,
-  } = "";
-  const maxLimit = 100000;
-  const [globalYouSell, setGlobalYouSell] = useState();
-  const [maxValue, setMaxvalue] = useState(null);
-  const sellInputRef = useRef(null);
-  const [coinImageLoaded, setCoinImageLoaded] = useState(false);
-  const [setFocusedInput] = useState("sell");
-  const [rightOffset, setRightOffset] = useState(18);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const preventLeadingZero = (e) => {
-    let value = e.target.value;
-    value = value.replace(/^0+/, "");
-    e.target.value = value;
-  };
-  const resetValidation = () => {
-    setMaxvalue(null);
-  };
-  const preventNegative = (e) => {
-    if (e.target.value < 0) {
-      e.target.value = 0;
+  const [globalYouSell, setGlobalYouSell] = useState("");
+  const [globalYouGet, setGlobalYouGet] = useState("");
+  const exchangeRate = 86; 
+  const isActive = (globalYouSell?.length ?? 0) > 0 || (globalYouGet?.length ?? 0) > 0;
+  const handleYouSellInputChange = (event) => {
+    const inputValue = event.target.value;
+    if (/^\d*\.?\d*$/.test(inputValue)) {
+      // Allow only numbers and decimals
+      setGlobalYouSell(inputValue);
+      setGlobalYouGet(
+        inputValue ? (parseFloat(inputValue) * exchangeRate).toFixed(2) : ""
+      );
     }
   };
-  const handleYouSellInputChange = (e) => {
-    let value = e.target.value;
-    if (value.length > 1 && value.startsWith("0")) {
-      return;
-    }
-    if (value && Number(value) > maxLimit) {
-      setMaxvalue(value);
-      return;
-    }
-    setMaxvalue(null);
-    if (!isNaN(value) && value >= 0) {
-      setGlobalYouSell(value);
-    }
-  };
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    if (!isNaN(value) && value >= 0) {
-      setGlobalYouGet(value);
+  const handleYouGetInputChange = (event) => {
+    const inputValue = event.target.value;
+    if (/^\d*\.?\d*$/.test(inputValue)) {
+      // Allow only numbers and decimals
+      setGlobalYouGet(inputValue);
+      setGlobalYouSell(
+        inputValue ? (parseFloat(inputValue) / exchangeRate).toFixed(2) : ""
+      );
     }
   };
   const handleProceed = () => {
-    if (
-      !(
-        globalYouSell < Number(globalCoin?.minSellValue) ||
-        !globalQuoteData ||
-        globalYouGet === ""
-      )
-    ) {
-      setIsSubmitting(true);
-      setTimeout(() => {
-        setIsSubmitting(false);
-      }, 1500);
+    if (isActive) {
+      window.location.href = "https://widget.usdtmarketplace.com/";
     }
   };
   return (
     <>
       <Box className='container'>
-        {/* Header Section */}
         <Box className='header-section'>
           <Typography variant='subtitle2' className='subtitle'>
             ✨ INSTANT OFF-RAMPING CONVERSION
@@ -103,22 +69,26 @@ const Home = () => {
             deposited directly into your bank account with minimal effort.
           </Typography>
           <Card
-            sx={{
-              background:
-                "linear-gradient(90deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.28) 100%)",
-              color: "white",
-              borderRadius: 5,
-              boxShadow: "0px 4px 12px 0px rgba(37, 37, 37, 0.25)",
-              backdropFilter: "blur(40px)",
-              paddingTop: 2,
-              border: "1px solid #FFFFFF4D",
-              marginTop: 5,
-            }}>
+           sx={{
+            background:
+              "linear-gradient(90deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.28) 100%)",
+            color: "white",
+            borderRadius: 5,
+            boxShadow: "0px 4px 12px 0px rgba(37, 37, 37, 0.25)",
+            backdropFilter: "blur(40px)",
+            paddingTop: 2,
+            border: "1px solid #FFFFFF4D",
+            marginTop: 5,
+            width: "100%", 
+            maxWidth: 600, 
+            mx: "auto", 
+          }}>
             <CardContent sx={{ borderRadius: 10 }}>
               <Typography variant='h5' fontWeight='bold' color='#A9EA2E'>
                 Why choose us?
               </Typography>
-              <Box display='flex' alignItems='center' mt={2}>
+              <Box display='flex' alignItems='center' flexDirection={{ xs: "column", sm: "row" }} 
+          textAlign={{ xs: "center", sm: "left" }}  mt={2}>
                 <svg
                   width='20'
                   height='21'
@@ -141,7 +111,8 @@ const Home = () => {
                   Instant transactions processed in real-time.
                 </Typography>
               </Box>
-              <Box display='flex' alignItems='center' mt={1}>
+              <Box display='flex' alignItems='center' flexDirection={{ xs: "column", sm: "row" }} 
+          textAlign={{ xs: "center", sm: "left" }}  mt={1}>
                 <svg
                   width='20'
                   height='21'
@@ -164,7 +135,8 @@ const Home = () => {
                   Transparent pricing, no surprises.
                 </Typography>
               </Box>
-              <Box display='flex' alignItems='center' mt={1}>
+              <Box display='flex' alignItems='center' flexDirection={{ xs: "column", sm: "row" }} 
+          textAlign={{ xs: "center", sm: "left" }}  mt={1}>
                 <svg
                   width='20'
                   height='21'
@@ -190,29 +162,40 @@ const Home = () => {
             </CardContent>
           </Card>
         </Box>
-        <Container
-        sx={{border:"2px solid red",
-          display:'flex',
-          flexDirection:'column',
-          gap:3,
-          //marginLeft:"10%",
-          width:'100%',
-          maxWidth:'100%',
-          alignItems:'center'
-        }}
-          
-          >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            alignItems: "center",
+            position: "relative",
+            borderRadius: "24px",
+            paddingTop: "16px",
+            paddingBottom: "16px",
+            zIndex: 1,
+            "&::before": {
+              content: '""',
+              position: "absolute",
+              inset: 0,
+              padding: "2px",
+              borderRadius: "inherit",
+              background:
+                "linear-gradient(143.61deg, #A7E92D -16.22%, #222F09 42.86%, rgba(167, 233, 45, 0.8) 101.93%)",
+              WebkitMask:
+                "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)", // Safari fix
+              maskComposite: "exclude",
+              zIndex: -1,
+            },
+          }}>
           <Box
             sx={{
               py: 3,
-              px: 4,
-              width: "100%",
-              maxWidth: { md: "60%", lg: 545 },
+              px: 3,
               borderRadius: 3,
               bgcolor: "#A7E92D",
               boxShadow: 3,
               height: "120px",
-             
+              width: "80%",
             }}>
             <Box display='flex' flexDirection='column' gap={2}>
               <Typography
@@ -225,20 +208,23 @@ const Home = () => {
                 }}>
                 You Sell
               </Typography>
-
               <Box display='flex' flexDirection='column' width='100%'>
                 <Box
                   display='flex'
                   justifyContent='space-between'
                   alignItems='center'
                   height={48}>
-                  <Box display='flex' alignItems='center' gap={3}>
+                  <Box display='flex' alignItems='center' gap={2}>
                     <img
                       src={Tether}
                       alt='Coin Icon'
-                      style={{ width: 42, height: 42, objectFit: "cover" }}
-                      onLoad={() => setCoinImageLoaded(true)}
-                      onError={() => setCoinImageLoaded(false)}
+                      style={{
+                        width: 42,
+                        height: 42,
+                        objectFit: "cover",
+                        borderRadius: "50%",
+                        display: "block",
+                      }}
                     />
                     <Typography
                       variant='h5'
@@ -260,7 +246,7 @@ const Home = () => {
                       style={{
                         position: "absolute",
                         right: `${
-                          10 + (globalYouSell?.toString().length || 0) * 20
+                          10 + (globalYouSell?.toString().length || 0) * 15
                         }px`,
                         color: "#11111180",
                         fontSize: "1.5rem",
@@ -270,7 +256,6 @@ const Home = () => {
                       type='text'
                       variant='outlined'
                       inputMode='numeric'
-                      fullWidth
                       inputProps={{
                         style: {
                           textAlign: "right",
@@ -302,21 +287,24 @@ const Home = () => {
           <Box
             sx={{
               py: 3,
-              px: 4,
-              width: "100%",
-              maxWidth: { md: "60%", lg: 545 },
+              px: 3,
               borderRadius: 3,
               bgcolor: "#FFFFFF1F",
               boxShadow: 3,
               height: "120px",
+              width: "80%",
             }}>
             <Box display='flex' flexDirection='column' gap={2}>
               <Typography
                 variant='h6'
-                sx={{ fontWeight: 500, color: "#F4F4F4" }}>
+                sx={{
+                  fontWeight: 600,
+                  color: "#F4F4F4",
+                  fontSize: "16px",
+                  fontFamily: "Figtree",
+                }}>
                 You Receive
               </Typography>
-
               <Box display='flex' flexDirection='column' width='100%'>
                 <Box
                   display='flex'
@@ -334,14 +322,12 @@ const Home = () => {
                         borderRadius: "50%",
                         display: "block",
                       }}
-                      onLoad={() => setCoinImageLoaded(true)}
-                      onError={() => setCoinImageLoaded(false)}
                     />
 
                     <Typography
                       variant='h5'
                       sx={{
-                        fontWeight: 600,
+                        fontWeight: 500,
                         color: "#F4F4F4",
                         fontFamily: "Figtree",
                         fontSize: "24px",
@@ -353,21 +339,21 @@ const Home = () => {
                   <Box
                     position='relative'
                     width='100%'
-                    maxWidth={{ sm: 180, md: 200, lg: 250 }}>
+                    maxWidth={{ sm: 150, md: 200, lg: 250 }}>
                     <FaRupeeSign
                       style={{
                         position: "absolute",
                         right: `${
-                          15 + (globalYouGet?.toString().length || 0) * 10
+                          10 + (globalYouGet?.toString().length || 0) * 15
                         }px`,
                         color: "#F4F4F480",
                         fontSize: "1.5rem",
                       }}
                     />
                     <TextField
-                      type='number'
-                      variant='standard'
-                      fullWidth
+                      type='text'
+                      variant='outlined'
+                      inputMode='numeric'
                       inputProps={{
                         style: {
                           textAlign: "right",
@@ -376,8 +362,9 @@ const Home = () => {
                           color: "#F4F4F4",
                         },
                       }}
+                      sx={{ "& fieldset": { border: "none" } }}
                       value={globalYouGet}
-                      disabled
+                      onChange={handleYouGetInputChange}
                     />
                   </Box>
                 </Box>
@@ -387,7 +374,11 @@ const Home = () => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
+                    mt: 1,
                     color: "#F4F4F480",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    fontFamily: "Figtree",
                   }}>
                   Indian Rupees <FaRupeeSign style={{ marginLeft: 4 }} />
                 </Typography>
@@ -407,23 +398,31 @@ const Home = () => {
           <Button
             fullWidth
             variant='outlined'
+            paddingLeft='16px'
             sx={{
               mt: 2,
-              py: 1.5,
-              width: '100%',
               height: 48,
               fontSize: { xs: "0.875rem", md: "1rem" },
               fontWeight: 500,
-              borderRadius: 3,
-              fontFamily:'Figtree',
+              borderRadius: 5,
+              fontFamily: "Figtree",
               boxShadow: "0px 20px 40px 0px rgba(0,0,0,0.25)",
-              bgcolor:"white",
+              bgcolor: isActive ? "#A7E92D" : "white",
               color: "#000",
+              width: "92%",
+              transition: "background-color 0.5s",
+              textTransform: "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 1.5,
             }}
             onClick={handleProceed}>
+              
             Convert now
+            <NorthEastIcon/>
           </Button>
-        </Container>
+        </Box>
       </Box>
       <Company />
       <HeroSection />

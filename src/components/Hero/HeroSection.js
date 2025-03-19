@@ -13,11 +13,11 @@ const HeroSection = () => {
         justifyContent: "center",
         textAlign: "center",
         background: "linear-gradient(180deg, #000 0%, #111 100%)",
-        paddingBottom:10
+        paddingBottom:10,
+        paddingTop:{xs:10,md:0}
       }}
     >
-      <Box sx={{ maxWidth: "800px" }}>
-      
+      <Box sx={{ maxWidth: "800px",px: { xs: 3, sm: 5 } }}>
         <Typography
           variant="body2"
           color="#A9EA2E"
@@ -27,6 +27,7 @@ const HeroSection = () => {
           alignItems="center"
           justifyContent="center"
           gap={1}
+          fontSize={{ xs: "14px", sm: "16px" }}
         >
         
           <svg
@@ -58,8 +59,6 @@ const HeroSection = () => {
           The Future of Stablecoin Transactions: Secure, Fast, and Reliable USDT
           Services
         </Typography>
-
-        {/* Subtitle */}
         <Typography
           variant="body1"
           color="rgba(255, 255, 255, 0.7)"
@@ -72,23 +71,35 @@ const HeroSection = () => {
         </Typography>
       </Box>
       <Button
-        variant="outlined"
-        sx={{
-          mt: 10,
-          borderColor: "#A9EA2E",
-          color: "#A9EA2E",
-          fontWeight: "bold",
-          textTransform: "none",
-          padding: "12px 24px",
-          borderRadius: "8px",
-          "&:hover": {
-            backgroundColor: "rgba(0, 255, 0, 0.2)",
-          },
-        }}
-        endIcon={<ArrowForwardIcon />}
-      >
-        Get Started
-      </Button>
+  variant="outlined"
+  sx={{
+    mt: { xs: 5, md: 10 }, // Adjust margin for responsiveness
+    borderColor: "#A9EA2E",
+    color: "#A9EA2E",
+    fontWeight: "bold",
+    textTransform: "none",
+    padding: "12px 24px",
+    borderRadius: "8px",
+    "&:hover": {
+      backgroundColor: "rgba(0, 255, 0, 0.2)",
+    },
+  }}
+  endIcon={<ArrowForwardIcon />}
+>
+  <a
+    href="https://widget.usdtmarketplace.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      textDecoration: "none",
+      color: "inherit",
+      display: "flex",
+      alignItems: "center",
+    }}
+  >
+    Get Started
+  </a>
+</Button>
     </Box>
   );
 };

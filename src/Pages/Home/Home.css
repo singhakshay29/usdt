@@ -12,7 +12,6 @@
     font-family: 'Figtree', sans-serif;
     align-items: center;
     background-color: #111;
-   gap: 10;
   }
   
   .header-section {
@@ -23,21 +22,25 @@
   
   .subtitle {
     color: #A3FF00;
+    font-family: "Figtree",
   }
   
   .title {
     font-weight: bold;
     margin-top: 1rem;
+    font-family: "Figtree",
   }
   
   .body-text {
     margin-top: 2rem;
     color: #FFFFFF99;
+    font-family: "Figtree",
   }
   
   .body-text-secondary {
     margin-top: 1rem;
     color: #FFFFFF99;
+    font-family: "Figtree",
   }
   
   .sell-box {
@@ -120,7 +123,7 @@
   /* Responsive Styles */
 @media (max-width: 1200px) {
   .container {
-    padding-left: 2rem;
+    padding-left: 4rem;
     padding-right: 4rem;
   }
   .sell-box, .receive-box {
@@ -188,7 +191,7 @@
 
 @media (max-width: 480px) {
   .container {
-    padding: 0.75rem;
+    padding: 1rem;
   }
   .title {
     font-size: 1.25rem;

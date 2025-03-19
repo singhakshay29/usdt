@@ -114,7 +114,8 @@ const FeaturesSection = () => {
     <Box
       sx={{
        backgroundColor:"#000",
-        padding: "60px 20px",
+       py: { xs: 4, sm: 6, md: 8 },
+       px: { xs: 2, sm: 4, md: 6 },
         textAlign: "center",
       }}
     >
@@ -127,8 +128,8 @@ const FeaturesSection = () => {
           alignItems="center"
           justifyContent="center"
           gap={1}
+          fontSize={{ xs: "14px", sm: "16px" }}
         >
-          {/* SVG Icon */}
           <svg
             width="19"
             height="19"
@@ -163,13 +164,12 @@ const FeaturesSection = () => {
         </Typography>
       <Grid
         container
-        spacing={3}
         mt={4}
         justifyContent="center"
-        sx={{ maxWidth: "1000px", margin: "auto" }}
+        sx={{ maxWidth: "1000px", mx: "auto", px: { xs: 2, sm: 3, md: 0 },gap: { xs: 2, md: 3 }, }}
       >
         {features.map((feature, index) => (
-          <Grid item xs={12} sm={6} key={index}>
+          <Grid item xs={12} sm={6}  md={4}  key={index}>
             <FeatureCard {...feature} />
           </Grid>
         ))}
