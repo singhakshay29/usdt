@@ -40,13 +40,14 @@ const Company = () => {
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
-        gap: { xs: "30px", sm: "50px", md: "70px", lg: "90px" }, // Increased spacing
+        padding :{xs:2,md:0},
+        gap: { xs: "30px", sm: "50px", md: "70px", lg: "90px" }, 
         marginTop: "30px",
         width: "100%",
       }}>
-      <img src={upi} alt="UPI" style={{ width: "80px", height: "80px" }} />
-      <img src={phonepe} alt="PhonePe" style={{ width: "110px", height: "80px" }} />
-      <img src={visa} alt="VISA" style={{ width: "90px", height: "100px" }} />
+      <img src={upi} alt="UPI" style={{ width: "80px", height: "80px",color:"white" }} />
+      <img src={phonepe} alt="PhonePe" style={{ width: "150px", height: "70px" }} />
+      <img src={visa} alt="VISA" style={{ width: "120px", height: "120px" }} />
       <img src={gpay} alt="GPay" style={{ width: "100px", height: "50px" }} />
       <img src={rupay} alt="RuPay" style={{ width: "110px", height: "70px" }} />
       <img src={master} alt="MasterCard" style={{ width: "100px", height: "70px" }} />

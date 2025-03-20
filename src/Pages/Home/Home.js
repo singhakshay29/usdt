@@ -22,7 +22,7 @@ import NorthEastIcon from '@mui/icons-material/NorthEast';
 
 const Home = () => {
   const [globalYouSell, setGlobalYouSell] = useState("");
-  const [globalYouGet, setGlobalYouGet] = useState("");
+  const [globalYouGet, setGlobalYouGet] = useState(0);
   const exchangeRate = 86; 
   const isActive = (globalYouSell?.length ?? 0) > 0 || (globalYouGet?.length ?? 0) > 0;
   const handleYouSellInputChange = (event) => {
@@ -403,7 +403,7 @@ const Home = () => {
               mt: 2,
               height: 48,
               fontSize: { xs: "0.875rem", md: "1rem" },
-              fontWeight: 500,
+              fontWeight: 600,
               borderRadius: 5,
               fontFamily: "Figtree",
               boxShadow: "0px 20px 40px 0px rgba(0,0,0,0.25)",
@@ -418,9 +418,8 @@ const Home = () => {
               gap: 1.5,
             }}
             onClick={handleProceed}>
-              
             Convert now
-            <NorthEastIcon/>
+            <NorthEastIcon sx={{fontSize:18}}/>
           </Button>
         </Box>
       </Box>

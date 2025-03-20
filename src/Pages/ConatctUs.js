@@ -10,25 +10,35 @@ const ContactUs = () => {
 
   return (
     <Box
-    sx={{
-        background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(169, 234, 46, 0.1) 100%)",
+      sx={{
+        background:
+          "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(169, 234, 46, 0.1) 100%)",
         color: "#fff",
-        paddingLeft: "60px",
-        paddingRight: "60px",
+        px: { xs: 3, sm: 6, md: 8 },
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         backdropFilter: "blur(100px)",
         WebkitBackdropFilter: "blur(100px)",
-      }}
-      >
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Box sx={{ maxWidth: "600px", mb: 4 }}>
+      }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}>
+        <Box
+          sx={{
+            maxWidth: { xs: "100%", md: "600px" },
+            mb: { xs: 4, md: 0 },
+            textAlign: { xs: "center", md: "left" },
+          }}>
           <Typography
             variant='h4'
             fontWeight='700'
-            fontSize='60px'
+            fontSize={{ xs: "40px", sm: "50px", md: "60px" }}
             color='#FFFFFF'
             fontFamily='Figtree'>
             Contact Us
@@ -36,7 +46,7 @@ const ContactUs = () => {
           <Typography
             variant='body1'
             fontWeight='500'
-            fontSize='20px'
+            fontSize={{ xs: "16px", sm: "18px", md: "20px" }}
             fontFamily='Figtree'
             color='#FFFFFF80'
             sx={{ mt: 1, opacity: 0.8 }}>
@@ -44,12 +54,13 @@ const ContactUs = () => {
             your questions and assist you with any issues you face.
           </Typography>
         </Box>
+
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             gap: 2,
-            minWidth: "400px",
+            minWidth: { xs: "100%", sm: "400px" },
           }}>
           <TextField
             type='text'
@@ -62,7 +73,7 @@ const ContactUs = () => {
               }
             }}
             onChange={(e) => setName(e.target.value)}
-            placeholder='Enter your Password'
+            placeholder='Enter your Name'
             autoComplete='off'
             variant='outlined'
             fullWidth
@@ -77,13 +88,8 @@ const ContactUs = () => {
                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                   borderColor: "#FFFFFF33",
                 },
-                "& input": {
-                  fontSize: "14px",
-                  fontWeight: 500,
-                },
-                "&::placeholder": {
-                  color: "rgba(255, 255, 255, 0.6)",
-                },
+                "& input": { fontSize: "14px", fontWeight: 500 },
+                "&::placeholder": { color: "rgba(255, 255, 255, 0.6)" },
               },
             }}
           />
@@ -105,13 +111,8 @@ const ContactUs = () => {
                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                   borderColor: "#FFFFFF33",
                 },
-                "& input": {
-                  fontSize: "14px",
-                  fontWeight: 500,
-                },
-                "&::placeholder": {
-                  color: "rgba(255, 255, 255, 0.6)",
-                },
+                "& input": { fontSize: "14px", fontWeight: 500 },
+                "&::placeholder": { color: "rgba(255, 255, 255, 0.6)" },
               },
             }}
           />
@@ -132,13 +133,8 @@ const ContactUs = () => {
                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                   borderColor: "#FFFFFF33",
                 },
-                "& input": {
-                  fontSize: "14px",
-                  fontWeight: 500,
-                },
-                "&::placeholder": {
-                  color: "rgba(255, 255, 255, 0.6)",
-                },
+                "& input": { fontSize: "14px", fontWeight: 500 },
+                "&::placeholder": { color: "rgba(255, 255, 255, 0.6)" },
               },
             }}
             InputLabelProps={{ sx: { color: "#bbb" } }}
@@ -148,7 +144,7 @@ const ContactUs = () => {
             fullWidth
             variant='button'
             sx={{
-              height: { xs: "32px", sm: "44px" },
+              height: { xs: "40px", sm: "44px" },
               mt: 2,
               fontSize: "14px",
               fontWeight: 500,
@@ -168,11 +164,12 @@ const ContactUs = () => {
           </Button>
         </Box>
       </Box>
-      <Box sx={{ mt: 4 }}>
+
+      <Box sx={{ mt: 4, textAlign: { xs: "center", md: "left" } }}>
         <Typography
           variant='body2'
           fontWeight='500'
-          fontSize='20px'
+          fontSize={{ xs: "16px", sm: "18px", md: "20px" }}
           fontFamily='Figtree'
           color='#FFFFFF80'
           sx={{ mt: 1, opacity: 0.8 }}>

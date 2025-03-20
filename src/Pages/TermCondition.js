@@ -1,28 +1,31 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const TermCondition = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <Box
       sx={{
         background:
           "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(169, 234, 46, 0.1) 100%)",
         color: "#fff",
-        padding: "40px",
-        paddingLeft: "60px",
-        paddingRight: "60px",
+        padding: { xs: "20px", sm: "30px", md: "40px" },
+        paddingLeft: { xs: "20px", sm: "40px", md: "60px" },
+        paddingRight: { xs: "20px", sm: "40px", md: "60px" },
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         backdropFilter: "blur(100px)",
         WebkitBackdropFilter: "blur(100px)",
       }}>
-      <Box sx={{ maxWidth: "600px", mb: 4 }}>
+      <Box sx={{ maxWidth: { xs: "100%", sm: "600px" }, mb: 4 }}>
         <Typography
           variant='h4'
           fontWeight='700'
-          fontSize='60px'
+          fontSize={{ xs: "36px", sm: "48px", md: "60px" }}
           color='#FFFFFF'
           fontFamily='Figtree'>
           Terms & Conditions
@@ -30,25 +33,28 @@ const TermCondition = () => {
         <Typography
           variant='body1'
           fontWeight='400'
-          fontSize='20px'
+          fontSize={{ xs: "16px", sm: "18px", md: "20px" }}
           fontFamily='Figtree'
           color='#FFFFFF80'
           sx={{ mt: 1, opacity: 0.8 }}>
-          Published and Effective as of March 13, 2024
+          Published and Effective as of March 13, 2025
         </Typography>
       </Box>
+
       <Typography
         variant='h6'
         fontWeight='600'
         fontFamily='Figtree'
-        fontSize='18px'
+        fontSize={{ xs: "14px", sm: "16px", md: "18px" }}
         color='#FFFFFF80'
+        textTransform='uppercase'
         sx={{ opacity: 0.8, mb: 3 }}>
         Welcome to usdt marketplace. These Terms and Conditions ("Terms") govern
         your use of our website and services related to USDT to INR conversion.
         By accessing or using our services, you agree to be bound by these
         Terms.
       </Typography>
+
       <Box>
         {[
           {
@@ -116,10 +122,15 @@ const TermCondition = () => {
             <Typography
               variant='subtitle1'
               fontWeight='600'
-              fontFamily='Figtree'>
+              fontFamily='Figtree'
+              fontSize={{ xs: "16px", sm: "18px" }}>
               {section.title}
             </Typography>
-            <Typography color='#FFFFFF90' sx={{ opacity: 0.8, mb: 3 }}>
+            <Typography
+              textTransform='uppercase'
+              color='#FFFFFF90'
+              fontSize={{ xs: "12px", sm: "14px" }}
+              sx={{ opacity: 0.8, mb: 3 }}>
               {section.content}
             </Typography>
           </Box>
@@ -128,7 +139,7 @@ const TermCondition = () => {
           <Typography
             variant='body2'
             fontWeight='500'
-            fontSize='20px'
+            fontSize={{ xs: "14px", sm: "18px", md: "20px" }}
             fontFamily='Figtree'
             color='#FFFFFF80'
             sx={{ mt: 1, opacity: 0.8 }}>

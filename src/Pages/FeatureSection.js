@@ -25,7 +25,7 @@ const FeatureCard = ({ title, description, Icon ,src,height}) => {
       }}
     >
       <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Box display="flex" alignItems="center" textAlign="left" whiteSpace="nowrap" justifyContent="space-between">
           <Typography variant="h6" fontWeight="700" fontFamily="Figtree">
             {title}
           </Typography>
@@ -43,8 +43,6 @@ const FeatureCard = ({ title, description, Icon ,src,height}) => {
             <Icon sx={{ color: "#A9EA2E", fontSize: 20 }} />
           </Box>
         </Box>
-
-        {/* Description */}
         <Typography
           variant="body2"
           color="rgba(255, 255, 255, 0.7)"

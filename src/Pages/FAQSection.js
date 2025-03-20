@@ -13,17 +13,17 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 
 const faqs = [
-  { question: "What are the supported payment methods?", answer: "" },
-  { question: "How long does it take to process transactions?", answer: "" },
-  { question: "Are there any fees for converting USDT to INR?", answer: "" },
-  { question: "How do I contact support?", answer: "" },
-  { question: "What are the KYC Requirements and Guidelines?", answer: "" },
+  { question: "What are the supported payment methods?", answer: "USDT Marketplace supports payments via Visa and MasterCard for purchasing USDT. For selling USDT, INR is transferred directly into your linked bank account." },
+  { question: "How long does it take to process transactions?", answer: "Transactions on USDT Marketplace are processed instantly or within a few minutes, depending on network conditions and banking processing times." },
+  { question: "Are there any fees for converting USDT to INR?", answer: "USDT Marketplace does not mention any hidden fees for conversions. However, network fees or banking charges may apply. Check your account dashboard for detailed fee structures." },
+  { question: "How do I contact support?", answer: "You can contact USDT Marketplace support via email at support@usdtmarketplace.com for any inquiries or assistance." },
+  { question: "What are the KYC Requirements and Guidelines?", answer: "To complete KYC verification, you need to provide: Aadhaar Card (for identity verification) Phone number (linked to Aadhaar) Bank details (for INR withdrawals and deposits) These details help ensure compliance with financial regulations and secure transactions on the platform." },
   {
     question: "Is there a minimum or maximum transaction limit?",
     answer:
       "Yes, transaction limits vary based on verification level and market conditions. You can check your account dashboard for details.",
   },
-  { question: "What security measures are in place to protect my transactions?", answer: "" },
+  { question: "What security measures are in place to protect my transactions?", answer: "USDT Marketplace uses industry-standard encryption and security protocols to protect user data and funds. Additionally, the platform is registered with the Financial Intelligence Unit (FIU) to comply with legal regulations, ensuring a secure trading experience." },
 ];
 
 const FAQSection = () => {
@@ -151,7 +151,7 @@ const FAQSection = () => {
                   >
                     {faq.question}
                   </AccordionSummary>
-                  <AccordionDetails sx={{ color: "gray" }}>
+                  <AccordionDetails sx={{ color: "gray",textAlign:"left" }}>
                     {faq.answer || "No details available."}
                   </AccordionDetails>
                 </Accordion>
