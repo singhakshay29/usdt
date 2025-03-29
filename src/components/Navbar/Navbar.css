@@ -1,38 +1,45 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100vw;
-    padding: 16px;
-  }
-  
-  .navbar-logo {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    cursor: pointer;
-    z-index: 10;
-  }
-  
-  .navbar-buttons {
-    width: 200px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .navbar-button {
-    background: transparent;
-    color: white;
-    border: none;
-    width: 82px;
-    height: 39px;
-    font-family: 'Figtree', sans-serif;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  
-  .navbar-button.primary {
-    background: #FFFFFF1A;
-    border-radius: 8px;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+}
+
+.navbar-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.navbar-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-button {
+  background: transparent;
+  color: white;
+  border: none;
+  height: 39px;
+  font-family: "Figtree", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.navbar-button.primary {
+  background: #ffffff1a;
+  border-radius: 8px;
+}
+.navbar-button.active-link {
+  border-bottom: 2px solid #a9ea2e; /* Border only when active */
+}

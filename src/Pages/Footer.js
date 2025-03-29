@@ -11,7 +11,7 @@ const Footer = () => {
   const [showButton, setShowButton] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      setShowButton(window.scrollY > 100); // Show button when scrolled down 100px
+      setShowButton(window.scrollY > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -101,13 +101,31 @@ const Footer = () => {
           </Grid>
 
           <Grid item xs={12} sm={3}>
-            <Box display='flex' gap={2}>
-              <IconButton sx={{ backgroundColor: "#444", color: "#fff" }}>
-                <TelegramIcon />
-              </IconButton>
-              <IconButton sx={{ backgroundColor: "#444", color: "#fff" }}>
-                <XIcon />
-              </IconButton>
+            <Box display='flex' gap={2} alignItems='center'>
+              <Box textAlign='center'>
+                <IconButton
+                  sx={{ backgroundColor: "#444", color: "#fff", p: 2 }}>
+                  <TelegramIcon sx={{ fontSize: 25 }} />
+                </IconButton>
+                <Typography
+                  variant='body2'
+                  sx={{ color: "#ddd", fontWeight: "bold", mt: 1 }}>
+                  Join us on Telegram
+                </Typography>
+              </Box>
+
+             
+              <Box textAlign='center'>
+                <IconButton
+                  sx={{ backgroundColor: "#444", color: "#fff", p: 2 }}>
+                  <XIcon sx={{ fontSize: 25 }} />
+                </IconButton>
+                <Typography
+                  variant='body2'
+                  sx={{ color: "#ddd", fontWeight: "bold", mt: 1 }}>
+                  Follow us on X
+                </Typography>
+              </Box>
             </Box>
           </Grid>
         </Grid>
@@ -120,7 +138,7 @@ const Footer = () => {
           alignItems: "center",
           flexWrap: "wrap",
           padding: "10px 25px",
-          gap: {xs:0,sm:20}
+          gap: { xs: 0, sm: 20 },
         }}>
         <Typography
           variant='body2'
@@ -146,6 +164,12 @@ const Footer = () => {
             sx={{ opacity: 0.7, textTransform: "none", color: "inherit" }}
             onClick={() => navigate("/privacy")}>
             Privacy
+          </Button>
+          <Button
+            variant='text'
+            sx={{ opacity: 0.7, textTransform: "none", color: "inherit" }}
+            onClick={() => navigate("/privacy")}>
+            AML & KYC Policy
           </Button>
         </Box>
       </Box>

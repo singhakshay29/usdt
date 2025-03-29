@@ -1,0 +1,61 @@
+.button-container {
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 1px;
+    -webkit-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+  
+    .flipper {
+      transition: all 0.5s ease-in-out;
+      -webkit-transform-style: preserve-3d;
+      -ms-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+  
+    .button {
+      border-radius: 10px;
+      border: 2px solid;
+      backface-visibility: hidden;
+      position: absolute;
+      font-size: 14px;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      -webkit-box-shadow: 1px 2px 4px -1px rgba(60, 60, 60, 0.64);
+      box-shadow: 1px 2px 4px -1px rgba(60, 60, 60, 0.64);
+  
+      &.front {
+        z-index: 10;
+      }
+  
+      &.back {
+        color: #000;
+        transform: rotateX(180deg);
+      }
+    }
+  }
+  
+  .button-flip-vertical {
+    .flipper-flip-vertical {
+      transform-origin: 100% 20.5px;
+    }
+  
+    /*.front {
+      
+     
+    }*/
+  
+    .back {
+      transform: rotateX(180deg);
+    }
+  
+    &:hover .flipper-flip-vertical {
+      transform: rotateX(180deg);
+    }
+  }
+  

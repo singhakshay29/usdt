@@ -9,6 +9,8 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
+import "../Animation.css";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 
@@ -36,13 +38,12 @@ const FAQSection = () => {
   return (
     <Box
     sx={{
-        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent:"space-between",
         textAlign: "center",
-        background: "linear-gradient(180deg, #000 0%, #111 100%)",
+        background: "#111",
         paddingTop: 10,
         paddingBottom: 10,
         gap:10
@@ -80,15 +81,18 @@ const FAQSection = () => {
           color='white'
           mt={1}
           maxWidth='800px'
-          fontFamily='Figtree'>
-           Got Questions? We’re Here to Help!
+          fontFamily='Figtree'
+          p={{xs:1,sm:0}}
+          >
+           Need Help? Get Instant Answers or Chat <br/> with Our Team!
         </Typography>
         <Typography
           variant='body1'
           color='rgba(255, 255, 255, 0.7)'
           mt={2}
           maxWidth='600px'
-          mx='auto'>
+          mx='auto'
+          p={{xs:1,sm:0}}>
            Haven’t found what you’re looking for? Check out some common questions here, or contact our support team for more info.
         </Typography>
       </Box>
@@ -100,22 +104,21 @@ const FAQSection = () => {
               <Typography variant="h5" fontWeight="bold" color="white" fontFamily='Figtree' fontSize="40px" sx={{ mt: 2 }}>
                 We’re Here to Answer Your Questions...
               </Typography>
-              <Typography variant="body2" fontFamily='Figtree' fontSize="15px" sx={{ color:'rgba(255, 255, 255, 0.7)', mt: 1 }}>
+              <Typography variant="body2" fontFamily='Figtree' fontSize="15px" sx={{ color:'rgba(255, 255, 255, 0.7)', mt: 1,mb:2 }}>
                 Our support team is ready to assist you with any inquiries or issues you may have.
               </Typography>
-              <Button
-                variant="contained"
-                sx={{
-                  mt: 3,
-                  bgcolor: "#A9EA2E",
-                  color: "#000",
-                  textTransform: "none",
-                  fontWeight: "bold",
-                  "&:hover": { bgcolor: "#85c021" },
-                }}
-              >
-                Send us a message →
-              </Button>
+              <section>
+              <Box className='button-container button-flip-vertical'>
+                <div className='flipper flipper-flip-vertical'>
+                 <Button className='button front' sx={{fontFamily:"Figtree",fontWeight:700,width:"250px",color:"#A9EA2E"}}>
+                 Chat with Support Now <ArrowForwardIcon sx={{fontSize:20}}  />
+                  </Button>
+                  <Button className='button back' sx={{fontFamily:"Figtree",fontWeight:700,width:"250px",color:"000",backgroundColor:"#A9EA2E"}}>
+                  Chat with Support Now <ArrowForwardIcon sx={{fontSize:20}} />
+                  </Button>
+                </div>
+              </Box>
+            </section>
             </Box>
           </Grid>
           <Grid item xs={12} md={8}>
@@ -142,7 +145,7 @@ const FAQSection = () => {
                   }}
                 >
                   <AccordionSummary
-                    expandIcon={<ExpandMoreIcon sx={{ color: "#fff" }} />}
+                    expandIcon={<ExpandMoreIcon sx={{ color: "#fff",fontSize:"26px" }} />}
                     sx={{
                       fontWeight: "bold",
                       color: expanded === index ? "#97D129" : "#fff",

@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import stepOne from "../assets/stepOne.jpg";
 import stepTwo from "../assets/StepTwo.png";
 import stepThree from "../assets/StepThree.jpg";
@@ -8,21 +8,21 @@ const steps = [
     step: "STEP 1",
     title: "Quick Verification",
     description:
-      "Verify your identity securely and complete the onboarding process in just a few seconds.",
+      "🔍 Verify Your Identity in Seconds – Secure & Hassle-Free KYC.",
     img: stepOne,
   },
   {
     step: "STEP 2",
     title: "Get the Best Rate",
     description:
-      "Check real-time exchange rates and ensure you get the best value for your payout.",
+      "💱 Get the Best USDT to INR Rate – Live Pricing, No Hidden Fees",
     img: stepTwo,
   },
   {
     step: "STEP 3",
     title: "Receive Your Payment",
     description:
-      "Get your funds transferred quickly and securely to your bank account without any hassle.",
+      "✅ INR Deposited Instantly – No Delays, No Hassle",
     img: stepThree,
   },
 ];
@@ -31,15 +31,14 @@ const PayoutSteps = () => {
   return (
     <Box
       sx={{
-        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
-        background: "linear-gradient(180deg, #000 0%, #111 100%)",
+        background: "#111",
       }}>
-      <Box sx={{ maxWidth: "800px" }}>
+      <Box sx={{ maxWidth: "900px" }}>
         <Typography
           variant='body2'
           color='#A9EA2E'
@@ -72,20 +71,27 @@ const PayoutSteps = () => {
           fontWeight='700'
           color='white'
           mt={1}
-          maxWidth='800px'
-          fontFamily='Figtree'>
-          Quick & Secure Payout Made Easy
+          maxWidth='900px'
+          fontFamily='Figtree'
+          sx={{ px: { xs: 1, sm: 3, md: 0 }, gap: { xs: 2, md: 3 } }}>
+          Fast & Secure USDT to INR Payouts – Get Paid Instantly
         </Typography>
       </Box>
-      <Grid container spacing={3} p={7} justifyContent='space-between'>
+      <Grid container spacing={3} sx={{p:{xs:2,sm:7}}} justifyContent='space-between'>
         {steps.map((step, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card
-              sx={{ borderRadius: "16px", textAlign: "left", height: "100%" }}>
-              <CardContent sx={{ p: 3, flexGrow: 1 }}>
+            <Box
+              sx={{
+                borderRadius: "16px",
+                textAlign: "left",
+                backgroundColor: "white",
+                boxShadow: 3,
+                overflow: "hidden",
+              }}>
+              <Box sx={{ p: 1 ,height:{sm:"11rem"}}}>
                 <Typography
                   variant='caption'
-                  sx={{ fontWeight: "bold", color: "gray" }}>
+                  sx={{ fontWeight: "bold", color: "#000",fontSize:"16px" }}>
                   {step.step}
                 </Typography>
                 <Typography
@@ -110,32 +116,31 @@ const PayoutSteps = () => {
                   }}>
                   {step.description}
                 </Typography>
-              </CardContent>
+              </Box>
 
               <Box
                 sx={{
-                  position: "relative",
-                  width: "100%",
                   height: "326px",
+                  minHeight: "326px",
                   borderBottomLeftRadius: "18px",
                   borderBottomRightRadius: "18px",
                   overflow: "hidden",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}>
                 <Box
                   component='img'
                   src={step.img}
                   alt={step.title}
-                  sx={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
+                  sx={{ 
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
                   }}
                 />
               </Box>
-            </Card>
+            </Box>
           </Grid>
         ))}
       </Grid>

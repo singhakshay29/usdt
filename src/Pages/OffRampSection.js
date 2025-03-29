@@ -2,6 +2,8 @@ import React from "react";
 import { Box, Typography, Button, TextField } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import bg from "../assets/offBg.jpeg";
+import NorthEastIcon from "@mui/icons-material/NorthEast";
+import "../Animation.css";
 
 const OffRampSection = () => {
   return (
@@ -9,9 +11,9 @@ const OffRampSection = () => {
       sx={{
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
-        backgroundColor: "#000",
+        backgroundColor: "#111",
         color: "#fff",
-        padding: "40px",
+        padding: { xs: "10px", md: "40px" },
         gap: "20px",
       }}>
       <Box
@@ -54,7 +56,7 @@ const OffRampSection = () => {
             fontSize='20px'
             fontFamily='Figtree'
             color='#FFFFFF80'
-            sx={{ mt: 1, opacity: 0.8 }}>
+            sx={{ mt: 1, opacity: 0.8 ,marginBottom:"10px"}}>
             Start converting your USDT to INR instantly with secure, hassle-free
             transactions.
           </Typography>
@@ -62,21 +64,20 @@ const OffRampSection = () => {
             href='https://widget.usdtmarketplace.com/'
             target='_blank'
             rel='noopener noreferrer'
-            style={{ textDecoration: "none" }} // Prevents underline on text
+            style={{ textDecoration: "none"}} // Prevents underline on text
           >
-            <Button
-              variant='contained'
-              endIcon={<ArrowForwardIcon />}
-              sx={{
-                mt: 2,
-                color: "#fff",
-                background: "transparent",
-                border: "2px solid #fff",
-                borderRadius: "10px",
-                "&:hover": { backgroundColor: "#ddd" },
-              }}>
-              Start Converting Now
-            </Button>
+            <section>
+              <Box className='button-container button-flip-vertical'>
+                <div className='flipper flipper-flip-vertical'>
+                 <Button className='button front' sx={{fontFamily:"Figtree",fontWeight:700,color:"#fff",borderColor:"#A9EA2E"}}>
+                    CONVERT USDT NOW <NorthEastIcon sx={{fontSize:20}}  />
+                  </Button>
+                  <Button className='button back' sx={{fontFamily:"Figtree",fontWeight:700,backgroundColor:"#fff"}}>
+                    CONVERT USDT NOW <NorthEastIcon sx={{fontSize:20}} />
+                  </Button>
+                </div>
+              </Box>
+            </section>
           </a>
         </Box>
       </Box>
@@ -86,12 +87,12 @@ const OffRampSection = () => {
           flex: 1,
           backgroundColor: "#C8FF57",
           borderRadius: "12px",
-          padding: "20px",
+          padding: { xs: "10px", md: "40px" },
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
           minHeight: "200px",
-          maxWidth: "350px",
+          maxWidth: { xs: "100%", sm: "350px" },
         }}>
         <Typography
           variant='h6'

@@ -1,16 +1,20 @@
 import React from "react";
 import logo from "../../assets/logo.jpeg";
-import { Box, Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
 import "./Navbar.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   return (
     <Container
       maxWidth={false}
       disableGutters
-      sx={{ px: 8, background: "#111", zIndex: 50 }}
+      sx={{
+        paddingX: { xs: 3, sm: 8 },
+        paddingY: { xs: 2, sm: 2 },
+      }}
       className='navbar'>
       <img
         onClick={() => navigate("/")}
@@ -18,15 +22,31 @@ const Navbar = () => {
         alt='logo'
         className='navbar-logo'
       />
-      <Box className='navbar-buttons'>
-        <button onClick={() => navigate("/contact")} className='navbar-button'>
+      <Box
+        className='navbar-buttons'
+        sx={{ width: { xs: "150px", sm: "200px" } }}>
+        <Button
+          onClick={() => navigate("/contact")}
+          className={`navbar-button ${location.pathname === "/contact" ? "active-link" : ""}`}
+          sx={{
+            width: { xs: "60px", sm: "82px" },
+            textTransform: "none",
+            whiteSpace: "nowrap",
+            color: "white",
+            fontFamily: "Figtree",
+            fontWeight: 600
+          }}>
           Contact Us
-        </button>
+        </Button>
         <a
           href='https://widget.usdtmarketplace.com/'
           target='_blank'
           rel='noopener noreferrer'>
-          <button className='navbar-button primary'>Sign in</button>
+          <Button
+            className='navbar-button primary'
+            sx={{ width: { xs: "50px", sm: "82px" }, textTransform: "none",color:"white",fontFamily:"Figtree",fontWeight:600 }}>
+            Sign in
+          </Button>
         </a>
       </Box>
     </Container>

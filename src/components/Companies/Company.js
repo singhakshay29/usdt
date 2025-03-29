@@ -1,38 +1,32 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import upi from "../../assets/upi-icon.png";
-import phonepe from "../../assets/phonePe.png";
-import visa from "../../assets/visa.png";
-import gpay from "../../assets/gpay.png";
-import rupay from "../../assets/Rupay.png";
-import master from "../../assets/mastercard.png";
-import paytm from "../../assets/paytm.png";
+import Marquee from "react-fast-marquee";
+import pnb from "../../assets/627ccea41b2e263b45696abd.png";
+import idfc from "../../assets/idfc-first-bank8846.jpg";
+import hdfc from "../../assets/627bad8a8d659819b1108503 (1).png";
+import bob from "../../assets/svg-symbol-logo-of-bank-of-baroda-11563202073tr07cjozio-removebg-preview.png";
+import sbi from "../../assets/sbi.jpg";
+import kotak from "../../assets/Kotak_Mahindra_Bank_logo-700x207.png";
 
 const Company = () => {
   return (
     <Box
     sx={{
-      background: `linear-gradient(
-        180deg, 
-        #A9EA2E 0%, 
-        rgba(85, 117, 23, 0.5) 43.61%, 
-        rgba(42, 59, 12, 0.25) 71.56%, 
-        #00000000
-      )`,
+      background: `#111`,
       minHeight: "50vh",
-      width: "100%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
       textAlign: "center",
-      padding: "20px",
+      padding:"5px",
+      paddingTop:"20px",
     }}>
-    <Typography variant="h4" fontWeight="bold" color="white">
-      Trusted by Leading Companies
+    <Typography variant="h4" color="white" sx={{fontFamily:"Figtree",fontWeight:700,paddingX:{xs:1,sm:0}}}>
+    Trusted by India’s Leading Banks
     </Typography>
-    <Typography variant="body1" color="#FFFFFF80" mt={1}>
-      Top companies trust us for efficiency, reliability, and innovation.
+    <Typography variant="body1" color="#FFFFFF80" mt={1} sx={{fontFamily:"Figtree",fontWeight:500}}>
+    Powering seamless USDT off-ramp with India’s most trusted banking partners.
     </Typography>
     <Box
       sx={{
@@ -45,13 +39,19 @@ const Company = () => {
         marginTop: "30px",
         width: "100%",
       }}>
-      <img src={upi} alt="UPI" style={{ width: "80px", height: "80px",color:"white" }} />
-      <img src={phonepe} alt="PhonePe" style={{ width: "150px", height: "70px" }} />
-      <img src={visa} alt="VISA" style={{ width: "120px", height: "120px" }} />
-      <img src={gpay} alt="GPay" style={{ width: "100px", height: "50px" }} />
-      <img src={rupay} alt="RuPay" style={{ width: "110px", height: "70px" }} />
-      <img src={master} alt="MasterCard" style={{ width: "100px", height: "70px" }} />
-      <img src={paytm} alt="Paytm" style={{ width: "100px", height: "50px" }} />
+        <Marquee 
+      pauseOnHover 
+      gradient={false} 
+      speed={100}
+      style={{ marginTop: "30px", width: "100%",gap:10 }}
+    >
+      <img src={idfc} alt="idfc" style={{ width: "120px", height: "45px",borderRadius:"5px",margin: "0 50px" }} />
+      <img src={pnb} alt="pnb" style={{ width: "120px", height: "120px",color:"white",margin: "0 50px" }} />
+      <img src={bob} alt="bob" style={{ width: "120px", height: "40px",backgroundColor:"white",borderRadius:"5px",margin: "0 50px"  }} />
+      <img src={sbi} alt="sbi" style={{ width: "120px", height: "45px",borderRadius:"5px",margin: "0 50px" }} />
+      <img src={kotak} alt="kotak" style={{ width: "140px", height: "40px",backgroundColor:"white",borderRadius:"5px",margin: "0 50px" }} />
+      <img src={hdfc} alt="hdfc" style={{ width: "190px", height: "40px",borderRadius:"5px",margin: "0 50px" }} />
+    </Marquee>
     </Box>
   </Box>
   
