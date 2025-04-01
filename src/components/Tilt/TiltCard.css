@@ -1,0 +1,44 @@
+.tilt-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #111;
+  }
+  
+  .tilt-cards-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .tilt-card {
+    position: relative;
+    border-radius: 20px;
+    background: linear-gradient(180.92deg, rgba(25, 25, 25, 0) 63.08%, #191919 96.42%);
+  }
+  
+  .inner-card {
+    position: absolute;
+    inset: 16px;
+    display: grid;
+    place-content: center;
+    border-radius: 10px;
+
+    transform: translateZ(75px);
+    transform-style: preserve-3d;
+  }
+  
+  .icon {
+    transform: translateZ(75px);
+    font-size: 40px;
+    text-align: center;
+  }
+  
+  .text {
+    transform: translateZ(50px);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+  }
+  
+  

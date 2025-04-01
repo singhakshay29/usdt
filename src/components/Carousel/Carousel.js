@@ -1,19 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Fade } from "react-slideshow-image";
-import { TiChevronLeftOutline, TiChevronRightOutline } from "react-icons/ti";
 import "./Carousel.css";
 import { Avatar, Box, Typography } from "@mui/material";
-const MAX_VISIBILITY = 3;
-const properties = {
-  autoplay: true,
-  infinite: true,
-  duration: 100,
-  transitionDuration: 500,
-  prevArrow: <></>,
-  nextArrow: <></>,
-};
-
-
+//https://codesandbox.io/p/sandbox/distracted-star-cdyr9l?file=%2Fsrc%2FCarousel.jsx
 const Card = ({ testimonial }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1000);
   useEffect(() => {
@@ -24,7 +12,10 @@ const Card = ({ testimonial }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return (
-    <div className={`card ${isSmallScreen ?'small-card-width':'large-card-width'}`}>
+    <div
+      className={`card ${
+        isSmallScreen ? "small-card-width" : "large-card-width"
+      }`}>
       <Box
         sx={{
           display: "flex",
@@ -44,7 +35,9 @@ const Card = ({ testimonial }) => {
             sx={{ height: isSmallScreen ? "10px" : "60px" }}
             gap={1}>
             <img
-              src={"https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg"}
+              src={
+                "https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg"
+              }
               alt='logo'
               width={24}
               height={24}
@@ -157,8 +150,15 @@ const Card = ({ testimonial }) => {
 
 const CarouselCard = ({ children }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1000);
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(0);
   const count = React.Children.count(children);
+  useEffect(() => {
+    const interval = setInterval(() => {
+     setActive((prev) => (prev + 1) % count); 
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [count]);
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 1000);
@@ -169,45 +169,32 @@ const CarouselCard = ({ children }) => {
   return (
     <div
       className={`carousel ${isSmallScreen ? "small-width" : "large-width"}`}>
-      {active > 0 && (
-        <button className='nav left' onClick={() => setActive((i) => i - 1)}>
-          <TiChevronLeftOutline />
-        </button>
-      )}
       {React.Children.map(children, (child, i) => (
         <div
           className='card-container'
           style={{
             "--active": i === active ? 1 : 0,
-            "--offset": (active - i) / 3,
-            "--direction": Math.sign(active - i),
-            "--abs-offset": Math.abs(active - i) / 3,
+            "--offset": (active - i) / count,
+            "--direction": Math.sign((active - i)),
+            "--abs-offset": Math.abs(active - i) / count,
             "pointer-events": active === i ? "auto" : "none",
-            opacity: Math.abs(active - i) >= MAX_VISIBILITY ? "0" : "1",
-            display: Math.abs(active - i) > MAX_VISIBILITY ? "none" : "block",
+            opacity: Math.abs(active - i) >= 3 ? "0" : "1",
+            display: Math.abs(active - i) > 3 ? "none" : "block",
           }}>
           {child}
         </div>
       ))}
-      {active < count - 1 && (
-        <button className='nav right' onClick={() => setActive((i) => i + 1)}>
-          <TiChevronRightOutline />
-        </button>
-      )}
     </div>
   );
 };
 
-const Carousel = ({testimonials}) => {
-  //const fadeRef = React.useRef(null);
+const Carousel = ({ testimonials }) => {
   return (
-    //<Fade ref={fadeRef} {...properties}>
-    <CarouselCard >
+    <CarouselCard>
       {testimonials.map((testimonial) => (
         <Card testimonial={testimonial} />
       ))}
     </CarouselCard>
-      //</Fade>
   );
 };
 

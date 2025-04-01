@@ -5,98 +5,166 @@ import Active from "../assets/Active Support-bro 1.png";
 import Finger from "../assets/Fingerprint-bro 1.png";
 import Money from "../assets/Money income-amico 1@2x.png";
 import Money2 from "../assets/Money income-rafiki 1.png";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
+import { useRef } from "react";
+import "../components/Tilt/TiltCard.css";
+const ROTATION_RANGE = 32.5;
+const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
 
-const FeatureCard = ({ title, description, Icon, svg, src, height, width, customStyles = {} }) => {
+const FeatureCard = ({
+  title,
+  description,
+  Icon,
+  svg,
+  src,
+  height,
+  width,
+  customStyles = {},
+}) => {
+  const ref = useRef(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const xSpring = useSpring(x);
+  const ySpring = useSpring(y);
+  const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
+
+  const handleMouseMove = (e) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = (e.clientX - rect.left) * ROTATION_RANGE;
+    const mouseY = (e.clientY - rect.top) * ROTATION_RANGE;
+    const rX = (mouseY / height - HALF_ROTATION_RANGE) * -1;
+    const rY = mouseX / width - HALF_ROTATION_RANGE;
+    x.set(rX);
+    y.set(rY);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
   return (
-    <Box
-      sx={{
-        background: "linear-gradient(180.92deg, rgba(25, 25, 25, 0) 63.08%, #191919 96.42%)",
-        boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.3)",
-        color: "white",
-        borderRadius: "16px",
-        padding: "20px",
-        height: { xs: "auto", sm: height },
-        width: { xs: "auto", sm: width },
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        border: "1px solid rgba(255, 255, 255, 0.2)",
-        transition: "transform 0.3s ease, box-shadow 0.3s ease",
-        "&:hover": {
-          transform: "scale(1.05)",
-          boxShadow: "0px 15px 40px rgba(0, 0, 0, 0.5)",
-        },
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transformStyle: "preserve-3d",
+        transform,
+        height,
+        width,
       }}
-    >
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-          textAlign="left"
-          whiteSpace="nowrap"
-        >
-          <Typography variant="h6" fontWeight="700" fontFamily="Figtree">
-            {title}
-          </Typography>
-          <Box
-            sx={{
+      className='tilt-card'>
+      <div
+        style={{
+          background:
+            "linear-gradient(180.92deg, rgba(25, 25, 25, 0) 63.08%, #191919 96.42%)",
+          boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.3)",
+          color: "white",
+          borderRadius: "16px",
+          padding: "20px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          transition: "transform 0.3s ease, box-shadow 0.3s ease",
+        }}
+        className='inner-card inner-card-hover'>
+        <motion.div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 1,
+            transformStyle: "preserve-3d",
+          }}>
+          <motion.div
+            style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
-              bgcolor: "#FFFFFF0D",
-              width: "50px",
-              height: "50px",
-              borderRadius: "8px",
+              justifyContent: "space-between",
+              textAlign: "left",
+              whiteSpace: "nowrap",
+              transformStyle: "preserve-3d",
+            }}>
+            <motion.div
+              style={{ transformStyle: "preserve-3d" }}
+              animate={{ transform: "translateZ(50px)" }}>
+              <Typography variant='h6' fontWeight='700' fontFamily='Figtree'>
+                {title}
+              </Typography>
+            </motion.div>
+
+            <motion.div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#FFFFFF0D",
+                width: "50px",
+                height: "50px",
+                borderRadius: "8px",
+                transformStyle: "preserve-3d",
+              }}
+              animate={{ transform: "translateZ(75px)" }}>
+              {Icon ? <Icon sx={{ color: "#A9EA2E", fontSize: 24 }} /> : null}
+              {!Icon && svg && (
+                <div
+                  dangerouslySetInnerHTML={{ __html: svg }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "35px",
+                    height: "35px",
+                    transform: "translateZ(75px)",
+                  }}
+                />
+              )}
+            </motion.div>
+          </motion.div>
+          <motion.div animate={{ transform: "translateZ(50px)" }}>
+            <Typography
+              variant='body2'
+              color='rgba(255, 255, 255, 0.7)'
+              fontFamily='Figtree'
+              sx={{ textAlign: "left" }}>
+              {description}
+            </Typography>
+          </motion.div>
+          <motion.div
+            style={{
+              display: "flex",
+              flexGrow: 1,
+              justifyContent: "flex-end",
+              alignItems: "flex-end",
+              
             }}
-          >
-            {Icon ? <Icon sx={{ color: "#A9EA2E", fontSize: 24 }} /> : null}
-            {!Icon && svg && (
-              <Box
-                dangerouslySetInnerHTML={{ __html: svg }}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: "35px",
-                  height: "35px",
-                }}
-              />
-            )}
-          </Box>
-        </Box>
-        <Typography
-          variant="body2"
-          color="rgba(255, 255, 255, 0.7)"
-          fontFamily="Figtree"
-          sx={{ textAlign: "left" }}
-        >
-          {description}
-        </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flexGrow: 1,
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
-            mt: { xs: 0, sm: customStyles.mt },
-          }}
-        >
-          <Box
-            component="img"
-            src={src}
-            alt="Feature"
-            sx={{
-              overflow: "hidden",
-              width: customStyles.imageWidth || "65%",
-              height: "auto",
-              alignSelf: "flex-end",
-              filter: "brightness(0.9)",
-            }}
-          />
-        </Box>
-      </Box>
-    </Box>
+            animate={{ transform: "translateZ(75px)" }}>
+            <Box
+              component='img'
+              src={src}
+              alt=''
+              sx={{
+                overflow: "hidden",
+                width: "65%",
+                height: "auto",
+                alignSelf: "flex-end",
+                filter: "brightness(0.9)",
+                imageWidth:customStyles.imageWidth,
+                mt:customStyles.mt
+              }}
+            />
+          </motion.div>
+        </motion.div>
+      </div>
+    </motion.div>
   );
 };
 
@@ -206,53 +274,49 @@ const FeaturesSection = () => {
         Secure, Fast & Transparent USDT to INR Conversions
       </Typography>
       <Grid
-  container
-  mt={4}
-  sx={{
-    display: "flex",
-    justifyContent: "center",
-  }}
->
-  <Grid
-    container
-    sx={{
-      display: "grid",
-      gridTemplateColumns: { xs: "1fr", sm: "1fr", md: "repeat(2, 1fr)" },
-      gridTemplateRows: "auto auto",
-      gap: { xs: 2, sm: 3, md: 4 },
-      maxWidth: "1090px",
-      justifyContent: "center",
-      alignContent: "center",
-      alignItems: "center",
-      px: { xs: 0, sm: 3 },
-    }}
-  >
-    {features.map((feature, index) => {
-      const customStyles =
-        index === 0
-          ? { imageWidth: "60%", mt: "40px" }
-          : index === 1
-          ? { imageWidth: "72%", mt: "60px" }
-          : index === 2
-          ? { imageWidth: "72%", mt: "80px" }
-          : {};
-      return (
+        container
+        mt={4}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}>
         <Grid
-          item
-          key={index}
+          container
           sx={{
-            height: "100%",
-            position: index === 2 ? "relative" : "static",
-            top: { xs: "0", sm: index === 2 ? "-9.5rem" : "0px" },
-          }}
-        >
-          <FeatureCard {...feature} customStyles={customStyles} />
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", sm: "1fr", md: "repeat(2, 1fr)" },
+            gridTemplateRows: "auto auto",
+            gap: { xs: 2, sm: 3, md: 4 },
+            maxWidth: "1090px",
+            justifyContent: "center",
+            alignContent: "center",
+            alignItems: "center",
+            px: { xs: 0, sm: 3 },
+          }}>
+          {features.map((feature, index) => {
+            const customStyles =
+              index === 0
+                ? { imageWidth: "60%", mt: "10px" }
+                : index === 1
+                ? { imageWidth: "72%", mt: "60px" }
+                : index === 2
+                ? { imageWidth: "72%", mt: "80px" }
+                : {};
+            return (
+              <Grid
+                item
+                key={index}
+                sx={{
+                  height: "100%",
+                  position: index === 2 ? "relative" : "static",
+                  top: { xs: "0", sm: index === 2 ? "-9.5rem" : "0px" },
+                }}>
+                <FeatureCard {...feature} customStyles={customStyles} />
+              </Grid>
+            );
+          })}
         </Grid>
-      );
-    })}
-  </Grid>
-</Grid>
-
+      </Grid>
     </Box>
   );
 };
