@@ -4,11 +4,16 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import XIcon from "@mui/icons-material/X"; // This is from Material-UI for the Twitter (X) logo
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import logo from "../assets/logo.jpeg";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [showButton, setShowButton] = useState(false);
+
+  const triggerScrollTo = (section) => {
+    window.dispatchEvent(new Event(`scroll-to-${section}`));
+  };
   useEffect(() => {
     const handleScroll = () => {
       setShowButton(window.scrollY > 100);
@@ -17,7 +22,20 @@ const Footer = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+  const handleInfoClick = (sectionId) => {
+    if (location.pathname === "/") {
+      triggerScrollTo(sectionId);
+    } else {
+      navigate("/");
+      setTimeout(() => triggerScrollTo(sectionId), 100);
+    }
+  };
+  const infoLinks = [
+    { label: "About", id: "about", internal: true },
+    { label: "Blog", id: "blog", internal: true },
+    { label: "FAQs", id: "faq", internal: true },
+    { label: "Feedback", id: "feedback", internal: true },
+  ];
   return (
     <Box
       sx={{
@@ -67,17 +85,19 @@ const Footer = () => {
             <Typography variant='h6' fontFamily='Figtree' fontWeight='bold'>
               Info
             </Typography>
-            {["About", "Blog", "FAQs", "Feedback"].map((text, index) => (
+
+            {infoLinks.map((item, index) => (
               <Typography
-                key={index}
-                variant='body2'
-                fontFamily='Figtree'
+                key={item.id}
+                onClick={() => handleInfoClick(item.id)}
                 sx={{
+                  cursor: "pointer",
+                  mt: index === 0 ? 2 : 1,
                   opacity: 0.8,
                   color: "#FFFFFF",
-                  mt: index === 0 ? 2 : 1,
+                  fontFamily: "Figtree",
                 }}>
-                {text}
+                {item.label}
               </Typography>
             ))}
           </Grid>
@@ -114,7 +134,6 @@ const Footer = () => {
                 </Typography>
               </Box>
 
-             
               <Box textAlign='center'>
                 <IconButton
                   sx={{ backgroundColor: "#444", color: "#fff", p: 2 }}>
@@ -168,7 +187,7 @@ const Footer = () => {
           <Button
             variant='text'
             sx={{ opacity: 0.7, textTransform: "none", color: "inherit" }}
-            onClick={() => navigate("/privacy")}>
+            onClick={() => navigate("/aml-kyc")}>
             AML & KYC Policy
           </Button>
         </Box>

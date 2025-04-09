@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Carousel.css";
 import { Avatar, Box, Typography } from "@mui/material";
-//https://codesandbox.io/p/sandbox/distracted-star-cdyr9l?file=%2Fsrc%2FCarousel.jsx
+import {containerVariants, fadeUp} from "../Ui/animationVariants";
+import { AnimatePresence, motion } from "framer-motion";
 const Card = ({ testimonial }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1000);
   useEffect(() => {
@@ -12,6 +13,12 @@ const Card = ({ testimonial }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return (
+    <AnimatePresence>
+    <motion.div
+      variants={containerVariants}
+      initial='hidden'
+      whileInView='visible'
+      viewport={{ once: true, amount: 0.1 }}>  
     <div
       className={`card ${
         isSmallScreen ? "small-card-width" : "large-card-width"
@@ -29,6 +36,7 @@ const Card = ({ testimonial }) => {
             gap: 5,
             height: "100%",
           }}>
+             <motion.div variants={fadeUp}>
           <Box
             display='flex'
             alignItems='center'
@@ -52,8 +60,10 @@ const Card = ({ testimonial }) => {
               </Typography>
             )}
           </Box>
+             </motion.div>
           {isSmallScreen ? (
             <>
+             <motion.div variants={fadeUp}>
               <Box
                 sx={{
                   display: "flex",
@@ -98,9 +108,11 @@ const Card = ({ testimonial }) => {
                   </Box>
                 </Box>
               </Box>
+             </motion.div>
             </>
           ) : (
             <>
+             <motion.div variants={fadeUp}>
               <Box
                 sx={{
                   display: "flex",
@@ -134,17 +146,22 @@ const Card = ({ testimonial }) => {
                   </Typography>
                 </Box>
               </Box>
+             </motion.div>
             </>
           )}
         </Box>
+        <motion.div variants={fadeUp}>
         {!isSmallScreen && (
           <Avatar
             src={testimonial.image}
             sx={{ width: 320, height: 400, mx: 2, borderRadius: "1rem" }}
           />
         )}
+          </motion.div>
       </Box>
     </div>
+    </motion.div>
+    </AnimatePresence>
   );
 };
 
@@ -189,7 +206,7 @@ const CarouselCard = ({ children }) => {
 };
 
 const Carousel = ({ testimonials }) => {
-  return (
+  return (       
     <CarouselCard>
       {testimonials.map((testimonial) => (
         <Card testimonial={testimonial} />

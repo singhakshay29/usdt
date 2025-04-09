@@ -1,61 +1,144 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import Marquee from "react-fast-marquee";
-import pnb from "../../assets/627ccea41b2e263b45696abd.png";
-import idfc from "../../assets/idfc-first-bank8846.jpg";
-import hdfc from "../../assets/627bad8a8d659819b1108503 (1).png";
-import bob from "../../assets/svg-symbol-logo-of-bank-of-baroda-11563202073tr07cjozio-removebg-preview.png";
-import sbi from "../../assets/sbi.jpg";
-import kotak from "../../assets/Kotak_Mahindra_Bank_logo-700x207.png";
+import union from "../../assets/Union Bank.svg";
+import sbi from "../../assets/SBI.svg";
+import icici from "../../assets/ICICI.svg";
+import indusland from "../../assets/IndusInd.svg";
+import pnb from "../../assets/PNB.svg";
+import kotak from "../../assets/Kotak Mahindra.svg";
+import bob from "../../assets/Bank of Baroda (1).svg";
+import canara from "../../assets/Canara Bank.svg";
+import hdfc from "../../assets/HDFC.svg";
+import indian from "../../assets/Indian Bank.svg";
+import citi from "../../assets/Citi Bank.svg";
+import { motion, AnimatePresence } from "framer-motion";
+import {containerVariants, fadeUp} from "../Ui/animationVariants";
 
 const Company = () => {
   return (
-    <Box
-    sx={{
-      background: `#111`,
-      minHeight: "50vh",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      textAlign: "center",
-      padding:"5px",
-      paddingTop:"20px",
-    }}>
-    <Typography variant="h4" color="white" sx={{fontFamily:"Figtree",fontWeight:700,paddingX:{xs:1,sm:0}}}>
-    Trusted by India’s Leading Banks
-    </Typography>
-    <Typography variant="body1" color="#FFFFFF80" mt={1} sx={{fontFamily:"Figtree",fontWeight:500}}>
-    Powering seamless USDT off-ramp with India’s most trusted banking partners.
-    </Typography>
-    <Box
-      sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-        padding :{xs:2,md:0},
-        gap: { xs: "30px", sm: "50px", md: "70px", lg: "90px" }, 
-        marginTop: "30px",
-        width: "100%",
-      }}>
-        <Marquee 
-      pauseOnHover 
-      gradient={false} 
-      speed={100}
-      style={{ marginTop: "30px", width: "100%",gap:10 }}
-    >
-      <img src={idfc} alt="idfc" style={{ width: "120px", height: "45px",borderRadius:"5px",margin: "0 50px" }} />
-      <img src={pnb} alt="pnb" style={{ width: "120px", height: "120px",color:"white",margin: "0 50px" }} />
-      <img src={bob} alt="bob" style={{ width: "120px", height: "40px",backgroundColor:"white",borderRadius:"5px",margin: "0 50px"  }} />
-      <img src={sbi} alt="sbi" style={{ width: "120px", height: "45px",borderRadius:"5px",margin: "0 50px" }} />
-      <img src={kotak} alt="kotak" style={{ width: "140px", height: "40px",backgroundColor:"white",borderRadius:"5px",margin: "0 50px" }} />
-      <img src={hdfc} alt="hdfc" style={{ width: "190px", height: "40px",borderRadius:"5px",margin: "0 50px" }} />
-    </Marquee>
-    </Box>
-  </Box>
-  
-  
+    <AnimatePresence>
+      <motion.div
+        variants={containerVariants}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.1 }}>
+        <Box
+          sx={{
+            background: `#111`,
+            minHeight: "60vh",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+            padding: "5px",
+          }}>
+          <motion.div variants={fadeUp}>
+            <Typography
+              variant='h4'
+              color='white'
+              sx={{
+                fontFamily: "Figtree",
+                fontWeight: 700,
+                paddingX: { xs: 1, sm: 0 },
+              }}>
+              Trusted by India’s Leading Banks
+            </Typography>
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <Typography
+              variant='body1'
+              color='#FFFFFF80'
+              mt={1}
+              sx={{ fontFamily: "Figtree", fontWeight: 500 }}>
+              Powering seamless USDT off-ramp with India’s most trusted banking
+            </Typography>
+          </motion.div>
+          <Box
+            sx={{
+              position: "relative",
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: { xs: 2, md: 0 },
+              gap: { xs: "30px", sm: "50px", md: "70px", lg: "90px" },
+              marginTop: "30px",
+              width: "90%",
+            }}>
+            <Box
+              sx={{
+                position: "absolute",
+                left: 0,
+                top: 0,
+                width: "160px",
+                height: "100%",
+                zIndex: 2,
+                background:
+                  "linear-gradient(to right, #111 0%, rgba(17, 17, 17, 0) 100%)",
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                right: 0,
+                top: 0,
+                width: "160px",
+                height: "100%",
+                zIndex: 2,
+                background:
+                  "linear-gradient(to left, #111 0%, rgba(17, 17, 17, 0) 100%)",
+              }}
+            />
+            <Marquee
+              pauseOnHover
+              gradient={true}
+              gradientColor={[17, 17, 17]}
+              gradientWidth={150}
+              speed={100}
+              style={{ marginTop: "30px", width: "100%"}}>
+              {[
+                { src: citi, alt: "citi", width: 150 },
+                { src: sbi, alt: "sbi", width: 100 },
+                { src: bob, alt: "bob", width: 160 },
+                { src: pnb, alt: "pnb", mt: "30px" },
+                { src: icici, alt: "icici", width: 180 },
+                { src: indusland, alt: "indusland", width: 220 },
+                { src: canara, alt: "canara", width: 200 },
+                { src: union, alt: "union", width: 190 },
+                { src: kotak, alt: "kotak", width: 160 },
+                { src: hdfc, alt: "hdfc", width: 190 },
+                { src: indian, alt: "indian", width: 190 },
+              ].map((logo, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    height: { xs: 60, sm: 70 },
+                    marginX: { xs: 2, sm: 4 },
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    objectFit: "contain",
+                  }}>
+                  <Box
+                    component='img'
+                    src={logo.src}
+                    alt={logo.alt}
+                    sx={{
+                      width: logo.width,
+                      height: "auto",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                    }}
+                  />
+                </Box>
+              ))}
+            </Marquee>
+          </Box>
+        </Box>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

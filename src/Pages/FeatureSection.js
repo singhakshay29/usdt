@@ -1,4 +1,4 @@
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid,} from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import Active from "../assets/Active Support-bro 1.png";
@@ -6,16 +6,19 @@ import Finger from "../assets/Fingerprint-bro 1.png";
 import Money from "../assets/Money income-amico 1@2x.png";
 import Money2 from "../assets/Money income-rafiki 1.png";
 import {
+  AnimatePresence,
   motion,
   useMotionTemplate,
   useMotionValue,
   useSpring,
 } from "framer-motion";
 import { useRef } from "react";
-import "../components/Tilt/TiltCard.css";
+import "../components/Tilt/Tilt.css";
+import { containerVariants, fadeUp } from "../components/Ui/animationVariants";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
-
 const FeatureCard = ({
   title,
   description,
@@ -26,6 +29,8 @@ const FeatureCard = ({
   width,
   customStyles = {},
 }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const ref = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -58,12 +63,12 @@ const FeatureCard = ({
       style={{
         transformStyle: "preserve-3d",
         transform,
-        height,
-        width,
+        height: isMobile ? "380px" : height,
+        width: isMobile ? "100%" : width,
       }}
       className='tilt-card'>
-      <div
-        style={{
+      <Box
+        sx={{
           background:
             "linear-gradient(180.92deg, rgba(25, 25, 25, 0) 63.08%, #191919 96.42%)",
           boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.3)",
@@ -75,6 +80,8 @@ const FeatureCard = ({
           justifyContent: "space-between",
           border: "1px solid rgba(255, 255, 255, 0.2)",
           transition: "transform 0.3s ease, box-shadow 0.3s ease",
+          cursor: "grab",
+          maxWidth: "100%",
         }}
         className='inner-card inner-card-hover'>
         <motion.div
@@ -144,7 +151,6 @@ const FeatureCard = ({
               flexGrow: 1,
               justifyContent: "flex-end",
               alignItems: "flex-end",
-              
             }}
             animate={{ transform: "translateZ(75px)" }}>
             <Box
@@ -157,13 +163,13 @@ const FeatureCard = ({
                 height: "auto",
                 alignSelf: "flex-end",
                 filter: "brightness(0.9)",
-                imageWidth:customStyles.imageWidth,
-                mt:customStyles.mt
+                imageWidth: isMobile ? "":customStyles.imageWidth,
+                mt: isMobile ?"":customStyles.mt,
               }}
             />
           </motion.div>
         </motion.div>
-      </div>
+      </Box>
     </motion.div>
   );
 };
@@ -224,100 +230,119 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "#111",
-        py: { xs: 4, sm: 6, md: 8 },
-        px: { xs: 2, sm: 4, md: 6 },
-        textAlign: "center",
-      }}>
-      <Typography
-        variant='body2'
-        color='#A9EA2E'
-        fontWeight='500'
-        fontFamily='Figtree'
-        display='flex'
-        alignItems='center'
-        justifyContent='center'
-        gap={1}
-        fontSize={{ xs: "14px", sm: "16px" }}>
-        <svg
-          width='19'
-          height='19'
-          viewBox='0 0 19 19'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'>
-          <path
-            d='M14.9524 1.85653C14.9348 1.70102 14.8033 1.58347 14.6468 1.58331C14.4903 1.58315 14.3586 1.70043 14.3406 1.85591C14.2572 2.57972 14.0422 3.07627 13.7054 3.41307C13.3686 3.74987 12.8721 3.96482 12.1482 4.0483C11.9928 4.06624 11.8755 4.19796 11.8757 4.35446C11.8758 4.51096 11.9934 4.64245 12.1489 4.66006C12.8604 4.74066 13.3683 4.95556 13.7137 5.29468C14.0571 5.63196 14.2762 6.1278 14.3398 6.84435C14.3539 7.00333 14.4872 7.12516 14.6468 7.12498C14.8064 7.1248 14.9394 7.00267 14.9532 6.84366C15.0142 6.13922 15.233 5.63219 15.5788 5.28645C15.9245 4.9407 16.4316 4.72185 17.136 4.66087C17.295 4.6471 17.4171 4.5141 17.4173 4.35449C17.4175 4.19488 17.2957 4.06161 17.1367 4.04748C16.4201 3.98383 15.9243 3.76481 15.587 3.42132C15.2479 3.07596 15.033 2.5681 14.9524 1.85653Z'
-            fill='#A9EA2E'
-          />
-          <path
-            d='M9.49562 3.86921C9.45033 3.46933 9.11223 3.16706 8.70979 3.16665C8.30735 3.16624 7.96864 3.46781 7.92253 3.8676C7.70786 5.72883 7.15513 7.00567 6.28907 7.87173C5.42301 8.73779 4.14616 9.29052 2.28494 9.50519C1.88515 9.5513 1.58357 9.89001 1.58398 10.2925C1.5844 10.6949 1.88667 11.033 2.28655 11.0783C4.1163 11.2855 5.42222 11.8381 6.3103 12.7102C7.19354 13.5774 7.75675 14.8525 7.92042 16.695C7.95674 17.1038 8.29946 17.4171 8.70988 17.4166C9.1203 17.4162 9.46231 17.1021 9.4977 16.6933C9.6545 14.8818 10.2173 13.5781 11.1063 12.689C11.9954 11.7999 13.2992 11.2372 15.1106 11.0804C15.5195 11.045 15.8335 10.703 15.834 10.2925C15.8344 9.88212 15.5212 9.5394 15.1124 9.50308C13.2698 9.33941 11.9948 8.7762 11.1275 7.89296C10.2555 7.00489 9.70288 5.69896 9.49562 3.86921Z'
-            fill='#A9EA2E'
-          />
-        </svg>
-        All in One USDT Solution
-      </Typography>
-      <Typography
-        variant='h4'
-        fontWeight='700'
-        color='white'
-        display='flex'
-        alignItems='center'
-        justifyContent='center'
-        mt={1}
-        maxWidth='800px'
-        fontFamily='Figtree'
-        mx='auto'>
-        Why Choose Us?
-        <br />
-        Secure, Fast & Transparent USDT to INR Conversions
-      </Typography>
-      <Grid
-        container
-        mt={4}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-        }}>
-        <Grid
-          container
+    <AnimatePresence>
+      <motion.div
+        variants={containerVariants}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.1 }}>
+        <Box
+          id='ABOUT'
           sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "1fr", md: "repeat(2, 1fr)" },
-            gridTemplateRows: "auto auto",
-            gap: { xs: 2, sm: 3, md: 4 },
-            maxWidth: "1090px",
-            justifyContent: "center",
-            alignContent: "center",
-            alignItems: "center",
-            px: { xs: 0, sm: 3 },
+            backgroundColor: "#111",
+            py: { xs: 4, sm: 6, md: 8 },
+            px: { xs: 2, sm: 4, md: 6 },
+            textAlign: "center",
           }}>
-          {features.map((feature, index) => {
-            const customStyles =
-              index === 0
-                ? { imageWidth: "60%", mt: "10px" }
-                : index === 1
-                ? { imageWidth: "72%", mt: "60px" }
-                : index === 2
-                ? { imageWidth: "72%", mt: "80px" }
-                : {};
-            return (
-              <Grid
-                item
-                key={index}
-                sx={{
-                  height: "100%",
-                  position: index === 2 ? "relative" : "static",
-                  top: { xs: "0", sm: index === 2 ? "-9.5rem" : "0px" },
-                }}>
-                <FeatureCard {...feature} customStyles={customStyles} />
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Grid>
-    </Box>
+          <motion.div variants={fadeUp}>
+            <Typography
+              variant='body2'
+              color='#A9EA2E'
+              fontWeight='500'
+              fontFamily='Figtree'
+              display='flex'
+              alignItems='center'
+              justifyContent='center'
+              gap={1}
+              fontSize={{ xs: "14px", sm: "16px" }}>
+              <svg
+                width='19'
+                height='19'
+                viewBox='0 0 19 19'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'>
+                <path
+                  d='M14.9524 1.85653C14.9348 1.70102 14.8033 1.58347 14.6468 1.58331C14.4903 1.58315 14.3586 1.70043 14.3406 1.85591C14.2572 2.57972 14.0422 3.07627 13.7054 3.41307C13.3686 3.74987 12.8721 3.96482 12.1482 4.0483C11.9928 4.06624 11.8755 4.19796 11.8757 4.35446C11.8758 4.51096 11.9934 4.64245 12.1489 4.66006C12.8604 4.74066 13.3683 4.95556 13.7137 5.29468C14.0571 5.63196 14.2762 6.1278 14.3398 6.84435C14.3539 7.00333 14.4872 7.12516 14.6468 7.12498C14.8064 7.1248 14.9394 7.00267 14.9532 6.84366C15.0142 6.13922 15.233 5.63219 15.5788 5.28645C15.9245 4.9407 16.4316 4.72185 17.136 4.66087C17.295 4.6471 17.4171 4.5141 17.4173 4.35449C17.4175 4.19488 17.2957 4.06161 17.1367 4.04748C16.4201 3.98383 15.9243 3.76481 15.587 3.42132C15.2479 3.07596 15.033 2.5681 14.9524 1.85653Z'
+                  fill='#A9EA2E'
+                />
+                <path
+                  d='M9.49562 3.86921C9.45033 3.46933 9.11223 3.16706 8.70979 3.16665C8.30735 3.16624 7.96864 3.46781 7.92253 3.8676C7.70786 5.72883 7.15513 7.00567 6.28907 7.87173C5.42301 8.73779 4.14616 9.29052 2.28494 9.50519C1.88515 9.5513 1.58357 9.89001 1.58398 10.2925C1.5844 10.6949 1.88667 11.033 2.28655 11.0783C4.1163 11.2855 5.42222 11.8381 6.3103 12.7102C7.19354 13.5774 7.75675 14.8525 7.92042 16.695C7.95674 17.1038 8.29946 17.4171 8.70988 17.4166C9.1203 17.4162 9.46231 17.1021 9.4977 16.6933C9.6545 14.8818 10.2173 13.5781 11.1063 12.689C11.9954 11.7999 13.2992 11.2372 15.1106 11.0804C15.5195 11.045 15.8335 10.703 15.834 10.2925C15.8344 9.88212 15.5212 9.5394 15.1124 9.50308C13.2698 9.33941 11.9948 8.7762 11.1275 7.89296C10.2555 7.00489 9.70288 5.69896 9.49562 3.86921Z'
+                  fill='#A9EA2E'
+                />
+              </svg>
+              All in One USDT Solution
+            </Typography>
+          </motion.div>
+          <motion.div variants={fadeUp}>
+            <Typography
+              variant='h4'
+              fontWeight='700'
+              color='white'
+              display='flex'
+              alignItems='center'
+              justifyContent='center'
+              mt={1}
+              maxWidth='800px'
+              fontFamily='Figtree'
+              mx='auto'>
+              Why Choose Us?
+              <br />
+              Secure, Fast & Transparent USDT to INR Conversions
+            </Typography>
+          </motion.div>
+          <Grid
+            container
+            mt={4}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}>
+            <Grid
+              container
+              sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                  xs: "1fr",
+                  sm: "1fr",
+                  md: "repeat(2, 1fr)",
+                },
+                gridTemplateRows: "auto auto",
+                gap: { xs: 2, sm: 3, md: 4 },
+                maxWidth: "1090px",
+                justifyContent: "center",
+                alignContent: "center",
+                alignItems: "center",
+                px: { xs: 0, sm: 3 },
+              }}>
+              {features.map((feature, index) => {
+                const customStyles =
+                  index === 0
+                    ? { imageWidth: "60%", mt: "10px" }
+                    : index === 1
+                    ? { imageWidth: "72%", mt: "60px" }
+                    : index === 2
+                    ? { imageWidth: "72%", mt: "80px" }
+                    : {imageWidth: "72%", mt: "10px"};
+                return (
+                  <Grid
+                    item
+                    key={index}
+                    sx={{
+                      height: "100%",
+                      position: index === 2 ? "relative" : "static",
+                      top: { xs: "0", sm: index === 2 ? "-9.5rem" : "0px" },
+                    }}>
+                    <motion.div variants={fadeUp}>
+                      <FeatureCard {...feature} customStyles={customStyles} />
+                    </motion.div>
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Grid>
+        </Box>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

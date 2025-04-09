@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography, TextField, Button, Link } from "@mui/material";
 
 const ContactUs = () => {
@@ -7,7 +7,9 @@ const ContactUs = () => {
   const [isFocusedOne, setIsFocusedOne] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const isValidData = name.length > 0 && email.length > 0;
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <Box
       sx={{
