@@ -1,6 +1,6 @@
 # 💱 USDT to INR Converter – Real-Time Payout Demo
 
-![Screenshot](./public/screenshot.png)
+![Screenshot](./public/home.png)
 
 A sleek, modern, and lightning-fast demo web application for **instant conversion of USDT to INR**. Built with **React**, animated with **Framer Motion**, and styled using **Material UI**, this site delivers a beautiful and functional crypto off-ramping experience.
 
