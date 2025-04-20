@@ -1,0 +1,28 @@
+.flip-text-link {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    font-size: inherit;
+    font-weight: 900;
+    text-transform: none;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+
+  .flip-letter {
+    display: inline-block;
+    position: relative;
+    text-transform: none;
+    white-space: pre;
+  }
+  
+  .flip-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    pointer-events: none;
+  }

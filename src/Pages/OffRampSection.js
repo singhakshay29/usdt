@@ -70,39 +70,20 @@ const OffRampSection = () => {
                   Start converting your USDT to INR instantly with secure,
                   hassle-free transactions.
                 </Typography>
-                <a
+                <a className='button-section'
                   href='https://widget.usdtmarketplace.com/'
                   target='_blank'
                   rel='noopener noreferrer'
-                  style={{ textDecoration: "none" }} // Prevents underline on text
+                  style={{ textDecoration: "none",width:"200px" }} 
                 >
-                  <section>
-                    <Box className='button-container button-flip-vertical'>
-                      <div className='flipper flipper-flip-vertical'>
-                        <Button
-                          className='button front'
-                          sx={{
-                            fontFamily: "Figtree",
-                            fontWeight: 700,
-                            color: "#fff",
-                            borderColor: "#A9EA2E",
-                          }}>
-                          CONVERT USDT NOW{" "}
-                          <NorthEastIcon sx={{ fontSize: 20 }} />
-                        </Button>
-                        <Button
-                          className='button back'
-                          sx={{
-                            fontFamily: "Figtree",
-                            fontWeight: 700,
-                            backgroundColor: "#fff",
-                          }}>
-                          CONVERT USDT NOW{" "}
-                          <NorthEastIcon sx={{ fontSize: 20 }} />
-                        </Button>
-                      </div>
-                    </Box>
-                  </section>
+                   <span className='btn front' style={{fontFamily: "Figtree",fontWeight: 700,color: "#fff", borderColor: "#fff",}}>
+                   CONVERT USDT NOW{" "}
+                   <NorthEastIcon sx={{ fontSize: 20 }} />
+                </span>
+                <span className='btn back' style={{fontFamily: "Figtree",fontWeight: 700,backgroundColor: "#fff",borderColor: "#fff"}}>
+                CONVERT USDT NOW{" "}
+                <NorthEastIcon sx={{ fontSize: 20 }} />
+                </span>
                 </a>
               </Box>
             </motion.div>

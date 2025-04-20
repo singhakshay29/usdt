@@ -7,13 +7,14 @@ import icici from "../../assets/ICICI.svg";
 import indusland from "../../assets/IndusInd.svg";
 import pnb from "../../assets/PNB.svg";
 import kotak from "../../assets/Kotak Mahindra.svg";
-import bob from "../../assets/Bank of Baroda (1).svg";
-import canara from "../../assets/Canara Bank.svg";
+import bob from "../../assets/bob.svg";
+import canara from "../../assets/Canara.svg";
 import hdfc from "../../assets/HDFC.svg";
-import indian from "../../assets/Indian Bank.svg";
-import citi from "../../assets/Citi Bank.svg";
+import indian from "../../assets/Indian.svg";
+import citi from "../../assets/Citi.svg";
 import { motion, AnimatePresence } from "framer-motion";
 import {containerVariants, fadeUp} from "../Ui/animationVariants";
+import HoverText from "../Ui/HoverText/HoverText";
 
 const Company = () => {
   return (
@@ -34,27 +35,36 @@ const Company = () => {
             textAlign: "center",
             padding: "5px",
           }}>
+            <Box sx={{
+              "&:hover": {
+                    " & .sub": {
+                      color: "#fff",
+                    },
+                  },}}>
           <motion.div variants={fadeUp}>
-            <Typography
-              variant='h4'
+            <Box
               color='white'
               sx={{
                 fontFamily: "Figtree",
                 fontWeight: 700,
                 paddingX: { xs: 1, sm: 0 },
+                fontSize:{xs:"36px",sm:"30px"},
+                cursor:"grab",
               }}>
-              Trusted by India’s Leading Banks
-            </Typography>
+                <HoverText> Trusted by India’s Leading Banks </HoverText>
+            </Box>
           </motion.div>
           <motion.div variants={fadeUp}>
             <Typography
+            className="sub"
               variant='body1'
               color='#FFFFFF80'
               mt={1}
-              sx={{ fontFamily: "Figtree", fontWeight: 500 }}>
+              sx={{ fontFamily: "Figtree", fontWeight: 500,transition: "color 0.6s ease", }}>
               Powering seamless USDT off-ramp with India’s most trusted banking
             </Typography>
           </motion.div>
+            </Box>
           <Box
             sx={{
               position: "relative",

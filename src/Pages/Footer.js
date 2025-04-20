@@ -202,6 +202,7 @@ const Footer = () => {
             position: "fixed",
             bottom: "20px",
             right: "20px",
+            zIndex:10
           }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <KeyboardArrowUpIcon />

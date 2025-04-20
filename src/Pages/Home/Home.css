@@ -2,43 +2,15 @@
 
 
 .container {
-    display: flex;
     color: white;
-    min-height: 100vh;
-    padding-left: 4rem;
-    padding-right: 4rem;
     justify-content: space-between;
     font-family: 'Figtree', sans-serif;
     align-items: center;
     background-color: #111;
   }
   
-  .header-section {
-    max-width: 600px;
-    margin-bottom: 4rem;
-    gap: 4rem;
-  }
-  
   .subtitle {
     color: #A3FF00;
-    font-family: "Figtree",
-  }
-  
-  .title {
-    font-weight: bold;
-    margin-top: 1rem;
-    font-family: "Figtree",
-  }
-  
-  .body-text {
-    margin-top: 2rem;
-    color: #FFFFFF99;
-    font-family: "Figtree",
-  }
-  
-  .body-text-secondary {
-    margin-top: 1rem;
-    color: #FFFFFF99;
     font-family: "Figtree",
   }
   
@@ -208,4 +180,32 @@
     font-size: 12px;
     height: 40px;
   }
+}
+@media (max-width: 375px) {
+  .title {
+    font-size: 1.1rem;
+  }
+  .body-text,
+  .body-text-secondary {
+    font-size: 0.85rem;
+  }
+  .input-field {
+    font-size: 15px;
+  }
+  .continue-button {
+    font-size: 12px;
+    height: 38px;
+  }
+}
+.title {
+  font-size: clamp(1.25rem, 5vw, 2.25rem);
+}
+
+.body-text,
+.body-text-secondary {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+}
+
+.input-icon {
+  font-size: clamp(16px, 4vw, 24px);
 }

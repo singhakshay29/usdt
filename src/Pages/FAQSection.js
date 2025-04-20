@@ -4,17 +4,20 @@ import {
   Grid,
   Typography,
   Box,
-  Button,
   Accordion,
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
 import "../Animation.css";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import { motion, AnimatePresence } from "framer-motion";
 import { containerVariants, fadeUp } from "../components/Ui/animationVariants";
+import FlipText from "../components/Ui/FlipText/FlipText";
+import HoverText from "../components/Ui/HoverText/HoverText";
+import {useNavigate} from "react-router-dom";
 
 const faqs = [
   {
@@ -55,6 +58,7 @@ const faqs = [
 ];
 
 const FAQSection = () => {
+  const navigate = useNavigate();
   const [expanded, setExpanded] = useState(null);
 
   const handleExpand = (panel) => (event, isExpanded) => {
@@ -91,7 +95,7 @@ const FAQSection = () => {
                 display='flex'
                 alignItems='center'
                 justifyContent='center'
-                gap={1}>
+                fontSize={{ xs: "16px", sm: "17px" }}>
                 <svg
                   width='19'
                   height='19'
@@ -107,33 +111,37 @@ const FAQSection = () => {
                     fill='#A9EA2E'
                   />
                 </svg>
-                FAQS
+               <FlipText>FAQS </FlipText> 
               </Typography>
             </motion.div>
+            <Box sx={{
+              "&:hover": {
+                    " & .sub": {
+                      color: "#fff",
+                    },
+                  },}}>
             <motion.div variants={fadeUp}>
               <Typography
                 variant='h4'
                 fontWeight='700'
                 color='white'
-                mt={1}
-                maxWidth='800px'
                 fontFamily='Figtree'
-                p={{ xs: 1, sm: 0 }}>
-                Need Help? Get Instant Answers or Chat <br /> with Our Team!
+                sx={{mt:1,p:{xs: 1, sm: 0 },cursor:"grab"}}
+                >
+                  <HoverText> Need Help? Get Instant Answers or Chat with Our Team! </HoverText>
               </Typography>
             </motion.div>
             <motion.div variants={fadeUp}>
               <Typography
+                className="sub"
                 variant='body1'
-                color='rgba(255, 255, 255, 0.7)'
-                mt={2}
-                maxWidth='600px'
-                mx='auto'
+                sx={{mt:2,mx:"auto",fontFamily:"Figtree",maxWidth:"600px", color:'rgba(255, 255, 255, 0.7)',transition: "color 0.6s ease"}}
                 p={{ xs: 1, sm: 0 }}>
                 Haven’t found what you’re looking for? Check out some common
                 questions here, or contact our support team for more info.
               </Typography>
             </motion.div>
+            </Box>
           </Box>
           <Container>
             <Grid container spacing={4} alignItems='flex-start'>
@@ -162,35 +170,19 @@ const FAQSection = () => {
                     </Typography>
                   </motion.div>
                   <motion.div variants={fadeUp}>
-                    <section>
-                      <Box className='button-container button-flip-vertical'>
-                        <div className='flipper flipper-flip-vertical'>
-                          <Button
-                            className='button front'
-                            sx={{
-                              fontFamily: "Figtree",
-                              fontWeight: 700,
-                              width: "250px",
-                              color: "#A9EA2E",
-                            }}>
-                            Chat with Support Now{" "}
-                            <ArrowForwardIcon sx={{ fontSize: 20 }} />
-                          </Button>
-                          <Button
-                            className='button back'
-                            sx={{
-                              fontFamily: "Figtree",
-                              fontWeight: 700,
-                              width: "250px",
-                              color: "000",
-                              backgroundColor: "#A9EA2E",
-                            }}>
-                            Chat with Support Now{" "}
-                            <ArrowForwardIcon sx={{ fontSize: 20 }} />
-                          </Button>
-                        </div>
-                      </Box>
-                    </section>
+                  <a className='button-section' style={{width:"250px"}}  href='/contact' 
+                  onClick={(e) => { 
+                    e.preventDefault();
+                    navigate("/contact");
+                  }}>
+                <span className='btn front' style={{fontFamily: "Figtree",fontWeight: 700,color: "#A9EA2E",}}>
+                Chat with Support Now {" "}<ArrowForwardIcon sx={{ fontSize: 20 }}/>
+                </span>
+                <span className='btn back' style={{fontFamily: "Figtree",fontWeight: 700,color: "#000",}}>
+                Chat with Support Now{" "}
+                <ArrowForwardIcon sx={{ fontSize: 20 }} />
+                </span>
+            </a>
                   </motion.div>
                 </Box>
               </Grid>
@@ -218,9 +210,11 @@ const FAQSection = () => {
                         }}>
                         <AccordionSummary
                           expandIcon={
-                            <ExpandMoreIcon
-                              sx={{ color: "#fff", fontSize: "26px" }}
-                            />
+                            expanded === index ? (
+                              <RemoveIcon sx={{ color: "#97D129", fontSize: "26px" }} />
+                            ) : (
+                              <AddIcon sx={{ color: "#fff", fontSize: "26px" }} />
+                            )
                           }
                           sx={{
                             fontWeight: "bold",

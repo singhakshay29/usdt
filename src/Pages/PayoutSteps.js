@@ -1,32 +1,92 @@
 import { Box, Grid, Typography } from "@mui/material";
-import stepOne from "../assets/stepOne.jpg";
-import stepTwo from "../assets/StepTwo.png";
-import stepThree from "../assets/StepThree.jpg";
+import stepOne from "../assets/Iphone 14 - 2.svg";
+import stepTwo from "../assets/Iphone 14Two.svg";
+import correct from "../assets/green.png";
+import stepThree from "../assets/Iphone 14Three.svg";
 import { motion, AnimatePresence } from "framer-motion";
+import convert from "../assets/Transfer.png";
+import search from "../assets/searchLens.png";
 import { containerVariants, fadeUp } from "../components/Ui/animationVariants";
+import {GradualSpacing} from "../components/Ui/Gradualspacing/Gradualspacing";
+import FlipText from "../components/Ui/FlipText/FlipText";
+import HoverText from "../components/Ui/HoverText/HoverText";
+import flowerBg from "../assets/payoutBg.jpeg";
 
 const steps = [
   {
     step: "STEP 1",
     title: "Quick Verification",
     description:
-      "🔍 Verify Your Identity in Seconds – Secure & Hassle-Free KYC.",
+    "Verify Your Identity in Seconds – Secure & Hassle-Free KYC.",
+    textImg:search, 
+    textImgWidth:"6%",
     img: stepOne,
   },
   {
     step: "STEP 2",
     title: "Get the Best Rate",
     description:
-      "💱 Get the Best USDT to INR Rate – Live Pricing, No Hidden Fees",
+    "Get the Best USDT to INR Rate – Live Pricing, No Hidden Fees",
+    textImg:convert,
+    textImgWidth:"12%",
     img: stepTwo,
   },
   {
     step: "STEP 3",
     title: "Receive Your Payment",
-    description: "✅ INR Deposited Instantly – No Delays, No Hassle",
+    description: "   INR Deposited Instantly –   No Delays, No Hassle",
+    textImg:correct,
+    textImgWidth:"8%",
     img: stepThree,
   },
 ];
+
+
+const backgroundVariant = {
+  rest: {
+    top: "calc(100% - 400px)", 
+    height: "400px",
+  },
+  hover: {
+    top: 0,
+    height: "100%",
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const phoneImageVariant = {
+  rest: { filter: "grayscale(30%)", scale: 1 },
+  hover: {
+    filter: "grayscale(0%)",
+    scale: 1.09,
+    transition: { duration: 0.9, ease: "easeOut" },
+  },
+};
+
+const textVariants = {
+  rest: { opacity: 1, x: 0, },
+  hover: { opacity: 1,x: 150, transition: { duration: 0.9 } },
+};
+
+const titleVariants = {
+  rest: { letterSpacing: "0px", color: "#000",x: 0,},
+  hover: {
+    letterSpacing: "1px",
+    color: "#04befe",
+    x: 70,
+    transition: { duration: 0.9, ease: "easeOut" },
+  },
+};
+
+const descVariants = {
+  rest: { x: 0, opacity: 1, color: "#00000099", },
+  hover: {
+    x: 5,
+    opacity: 1,
+    color:"#000",
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
+};
 
 const PayoutSteps = () => {
   return (
@@ -55,7 +115,8 @@ const PayoutSteps = () => {
                 display='flex'
                 alignItems='center'
                 justifyContent='center'
-                gap={1}>
+                fontSize={{ xs: "15px", sm: "16px" }}
+               >
                 <svg
                   width='19'
                   height='19'
@@ -71,7 +132,7 @@ const PayoutSteps = () => {
                     fill='#A9EA2E'
                   />
                 </svg>
-                FAST & SECURE KYC
+                <FlipText> FAST & SECURE KYC</FlipText>
               </Typography>
             </motion.div>
             <motion.div variants={fadeUp}>
@@ -82,8 +143,8 @@ const PayoutSteps = () => {
                 mt={1}
                 maxWidth='900px'
                 fontFamily='Figtree'
-                sx={{ px: { xs: 1, sm: 3, md: 0 }, gap: { xs: 2, md: 3 } }}>
-                Fast & Secure USDT to INR Payouts – Get Paid Instantly
+                sx={{ px: { xs: 1, sm: 3, md: 0 }, gap: { xs: 2, md: 3 },cursor:"grab" }}>
+                  <HoverText> Fast & Secure USDT to INR Payouts – Get Paid Instantly </HoverText>
               </Typography>
             </motion.div>
           </Box>
@@ -95,26 +156,53 @@ const PayoutSteps = () => {
             justifyContent='space-between'>
             {steps.map((step, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
-                <Box
-                  sx={{
+               <motion.div
+                  initial="rest"
+                  whileHover="hover"
+                  animate="rest"
+                  style={{
+                    position:"relative",
                     borderRadius: "16px",
                     textAlign: "left",
                     backgroundColor: "white",
                     boxShadow: 3,
                     overflow: "hidden",
+                    padding:0,
                   }}>
-                  <Box sx={{ p: 1, height: { sm: "11rem" } }}>
+                      <motion.img
+                      src={flowerBg}
+                      alt=""
+                      variants={backgroundVariant}
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        zIndex: 0,
+                      }}
+                      />
+                      <motion.div
+                      variants={{}} 
+                      style={{ position: "relative", zIndex: 1 }}
+                      >
+                        <Box sx={{ p: 1.5, height: { sm: "9rem" } }}>
+                        <motion.div variants={textVariants}>
                     <Typography
                       variant='caption'
                       sx={{
                         fontWeight: "bold",
                         color: "#000",
-                        fontSize: "16px",
+                        fontSize:"18px",
                       }}>
-                      {step.step}
-                    </Typography>
+                    {step.step}
+                    </Typography> 
+                        </motion.div>
+                        <motion.div variants={titleVariants}>
                     <Typography
                       variant='h6'
+                      className="title"
                       sx={{
                         fontWeight: "800",
                         color: "#000000",
@@ -122,44 +210,61 @@ const PayoutSteps = () => {
                         fontSize: "32px",
                         mt: 1,
                       }}>
-                      {step.title}
+                      <GradualSpacing text={step.title} fontSize="28px"/>
                     </Typography>
+                    </motion.div>
+                    <motion.div variants={descVariants}
+                    style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                    >
+                    <Box
+                      component='img'
+                      src={step?.textImg}
+                      alt={step.title}
+                      sx={{
+                        width:step?.textImgWidth,
+                        objectFit: "fit",
+                        mt:-1,
+                      }}
+                    />
                     <Typography
                       variant='body2'
+                      className="desc"
                       sx={{
-                        color: "#00000099",
-                        fontWeight: 500,
+                        fontWeight: 600,
                         fontFamily: "Figtree",
-                        fontSize: "20px",
+                        fontSize: "18px",
                         mt: 1,
                       }}>
-                      {step.description}
+                      <GradualSpacing text={step.description} />
                     </Typography>
-                  </Box>
-
+                    </motion.div>
+                    </Box>
+                      </motion.div>
                   <Box
                     sx={{
-                      height: "326px",
-                      minHeight: "326px",
-                      borderBottomLeftRadius: "18px",
-                      borderBottomRightRadius: "18px",
+                      position: "relative",
+                      maxHeight: "400px",
+                      borderBottomLeftRadius: "16px",
+                      borderBottomRightRadius: "16px",
                       overflow: "hidden",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                     }}>
-                    <Box
-                      component='img'
+                      <motion.img
                       src={step.img}
                       alt={step.title}
-                      sx={{
+                      variants={phoneImageVariant}
+                      style={{
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
+                        position: "relative",
+                        zIndex: 1,
                       }}
-                    />
-                  </Box>
-                </Box>
+                      />
+                    </Box>
+                </motion.div>
               </Grid>
             ))}
           </Grid>

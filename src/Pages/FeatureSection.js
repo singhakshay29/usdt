@@ -13,10 +13,12 @@ import {
   useSpring,
 } from "framer-motion";
 import { useRef } from "react";
-import "../components/Tilt/Tilt.css";
+import "../components/Ui/Tilt/Tilt.css";
 import { containerVariants, fadeUp } from "../components/Ui/animationVariants";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import FlipText from "../components/Ui/FlipText/FlipText";
+import HoverText from "../components/Ui/HoverText/HoverText";
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
 const FeatureCard = ({
@@ -253,7 +255,6 @@ const FeaturesSection = () => {
               display='flex'
               alignItems='center'
               justifyContent='center'
-              gap={1}
               fontSize={{ xs: "14px", sm: "16px" }}>
               <svg
                 width='19'
@@ -270,7 +271,7 @@ const FeaturesSection = () => {
                   fill='#A9EA2E'
                 />
               </svg>
-              All in One USDT Solution
+              <FlipText> All IN ONE USDT SOLUTION </FlipText>
             </Typography>
           </motion.div>
           <motion.div variants={fadeUp}>
@@ -284,35 +285,35 @@ const FeaturesSection = () => {
               mt={1}
               maxWidth='800px'
               fontFamily='Figtree'
-              mx='auto'>
-              Why Choose Us?
-              <br />
-              Secure, Fast & Transparent USDT to INR Conversions
+              mx='auto'
+             sx={{cursor:"grab"}}
+              >
+                 <HoverText> Why Choose Us?
+              Secure, Fast & Transparent USDT to INR Conversions</HoverText>
             </Typography>
           </motion.div>
           <Grid
             container
+            justifyContent="center"
             mt={4}
             sx={{
-              display: "flex",
-              justifyContent: "center",
+              px: { xs: 2, sm: 3, md: 4 },
             }}>
             <Grid
-              container
+              item
               sx={{
                 display: "grid",
                 gridTemplateColumns: {
                   xs: "1fr",
                   sm: "1fr",
-                  md: "repeat(2, 1fr)",
+                  md: "1fr",           
+                  lg: "repeat(2, 1fr)"
                 },
-                gridTemplateRows: "auto auto",
                 gap: { xs: 2, sm: 3, md: 4 },
                 maxWidth: "1090px",
-                justifyContent: "center",
-                alignContent: "center",
-                alignItems: "center",
-                px: { xs: 0, sm: 3 },
+                width: "100%",
+                mx: "auto",
+                px: { xs: 2, sm: 3 }, 
               }}>
               {features.map((feature, index) => {
                 const customStyles =

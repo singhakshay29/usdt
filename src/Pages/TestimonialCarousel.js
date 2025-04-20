@@ -1,81 +1,53 @@
 import React, { useEffect, useState } from "react";
 import "react-slideshow-image/dist/styles.css";
 import { Box, Typography } from "@mui/material";
-import p1 from "../assets/person1.jpeg";
-import p2 from "../assets/people2.webp";
+import p1 from "../assets/person1.avif";
+import p2 from "../assets/people2.avif";
 import p4 from "../assets/menOne.avif";
 import p5 from "../assets/menTwo.avif";
 import p6 from "../assets/lady.avif";
 import Carousel from "../components/Carousel/Carousel";
 import { motion, AnimatePresence } from "framer-motion";
 import { containerVariants, fadeUp } from "../components/Ui/animationVariants";
+import FlipText from "../components/Ui/FlipText/FlipText";
+import HoverText from "../components/Ui/HoverText/HoverText";
 
 const testimonials = [
   {
     id: 1,
-    name: "Prabhleen Kaur",
-    role: "Operations Manager at Figma",
-    text: "USDT Marketplace has made crypto transactions seamless and secure. The platform is fast, and I’ve never had an issue with withdrawals. Highly recommended!",
+    name: "Aarav Mehta",
+    role: "Product Manager at Zerodha",
+    text: "USDT Marketplace has made crypto withdrawals super quick and reliable. Funds hit my account instantly — it’s a game-changer!",
     image: p1,
   },
   {
     id: 2,
-    name: "John Doe",
-    role: "Software Engineer at Google",
-    text: "This platform changed how we manage our digital assets. The security and ease of use are unmatched!",
+    name: "Niharika Sharma",
+    role: "Software Engineer at Infosys",
+    text: "The platform is extremely secure and easy to use. I use it regularly for USDT to INR conversions and never had any issues.",
     image: p2,
   },
-  //{
-  //  id: 3,
-  //  name: "Emma Smith",
-  //  role: "Product Designer at Adobe",
-  //  text: "A game-changer for designers! The platform’s features streamline my workflow, saving time and effort."
-  //},
   {
-    id: 4,
-    name: "Michael Brown",
-    role: "CTO at Blockchain Inc.",
-    text: "Security and transparency are critical in the crypto space. This platform delivers both exceptionally well.",
+    id: 3,
+    name: "Rohan Verma",
+    role: "CTO at CoinVerse India",
+    text: "When it comes to crypto off-ramping in India, this is the smoothest experience I've had. Fast, transparent, and trusted.",
     image: p4,
   },
   {
-    id: 5,
-    name: "Sophia Davis",
-    role: "Marketing Lead at Shopify",
-    text: "I've seen a significant increase in efficiency while handling transactions. Absolutely love it!",
+    id: 4,
+    name: "Sanya Iyer",
+    role: "Marketing Lead at Razorpay",
+    text: "I’m impressed by how fast the payouts are. It fits right into our workflow — no delays, no complications.",
     image: p6,
   },
-  //{
-  //  id: 6,
-  //  name: "Daniel Wilson",
-  //  role: "Software Architect at Microsoft",
-  //  text: "A robust and user-friendly platform that ensures smooth transactions. Highly recommended for professionals."
-  //},
-  //{
-  //  id: 7,
-  //  name: "Olivia Martinez",
-  //  role: "CEO at FinTech Solutions",
-  //  text: "This platform is transforming the way we interact with digital assets. The user experience is top-notch."
-  //},
   {
-    id: 8,
-    name: "James Anderson",
-    role: "Lead Developer at Meta",
-    text: "I appreciate the level of security and performance. A must-have for anyone serious about crypto.",
+    id: 5,
+    name: "Kabir Joshi",
+    role: "Blockchain Developer at WazirX",
+    text: "The reliability and user-friendly design of the platform make it perfect for serious crypto users in India.",
     image: p5,
   },
-  //{
-  //  id: 9,
-  //  name: "Isabella Thomas",
-  //  role: "Investor & Analyst",
-  //  text: "An excellent platform with great features. It has simplified my portfolio management immensely."
-  //},
-  //{
-  //  id: 10,
-  //  name: "William Taylor",
-  //  role: "Cybersecurity Expert at AWS",
-  //  text: "Security and reliability are my top concerns, and this platform excels in both."
-  //}
 ];
 
 export default function TestimonialCarousel() {
@@ -121,7 +93,8 @@ export default function TestimonialCarousel() {
                 display='flex'
                 alignItems='center'
                 justifyContent='center'
-                gap={1}>
+                fontSize={{ xs: "16px", sm: "17px" }}
+                >
                 <svg
                   width='19'
                   height='19'
@@ -137,7 +110,7 @@ export default function TestimonialCarousel() {
                     fill='#A9EA2E'
                   />
                 </svg>
-                Testimonials
+                <FlipText>Testimonials </FlipText>
               </Typography>
             </motion.div>
             <motion.div variants={fadeUp}>
@@ -147,8 +120,11 @@ export default function TestimonialCarousel() {
                 color='white'
                 mt={1}
                 maxWidth='800px'
-                fontFamily='Figtree'>
-                Hear It from Our Customers
+                fontFamily='Figtree'
+                sx={{cursor:"grab"}}
+                >
+                  <HoverText>Hear It from Our Customers </HoverText>
+                
               </Typography>
             </motion.div>
             <motion.div variants={fadeUp}>

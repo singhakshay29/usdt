@@ -1,9 +1,11 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import NorthEastIcon from "@mui/icons-material/NorthEast";
 import { motion, AnimatePresence } from "framer-motion";
 import "../../Animation.css";
-import {containerVariants, fadeUp} from "../Ui/animationVariants";
+import { containerVariants, fadeUp } from "../Ui/animationVariants";
+import FlipText from "../Ui/FlipText/FlipText";
+import HoverText from "../Ui/HoverText/HoverText";
 
 const HeroSection = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1000);
@@ -38,7 +40,16 @@ const HeroSection = () => {
             paddingTop: { xs: 10, md: 0 },
             gap: 10,
           }}>
-          <Box sx={{ maxWidth: "700px", px: { xs: 3, sm: 5 } }}>
+          <Box
+            sx={{
+              maxWidth: "700px",
+              px: { xs: 3, sm: 5 },
+              "&:hover": {
+                "& .sub": {
+                  color: "#fff",
+                },
+              },
+            }}>
             <motion.div variants={fadeUp}>
               <Typography
                 variant='body2'
@@ -49,7 +60,6 @@ const HeroSection = () => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  gap: 1,
                   fontSize: { xs: "14px", sm: "16px" },
                 }}>
                 <svg
@@ -67,100 +77,70 @@ const HeroSection = () => {
                     fill='#A9EA2E'
                   />
                 </svg>
-                BUY, SELL & MANAGE USDT WITH EASE
+                <FlipText> BUY, SELL & MANAGE USDT WITH EASE </FlipText>
               </Typography>
             </motion.div>
             <motion.div variants={fadeUp}>
-              <Typography
+              <Box
                 sx={{
                   fontWeight: "700",
                   color: "white",
                   fontFamily: "Figtree",
                   marginTop: "1rem",
-                }}
-                variant='h4'>
-                The Future of Stablecoin Transactions: Secure, Fast, and
-                Reliable USDT Services
-              </Typography>
+                  fontSize: { xs: "40px", sm: "36px" },
+                  cursor: "grab",
+                }}>
+                <HoverText>
+                  The Future of Stablecoin Transactions : Fast,Secure,and
+                  Reliable USDT Services
+                </HoverText>
+              </Box>
             </motion.div>
             <motion.div variants={fadeUp}>
               <Typography
+                className='sub'
                 variant='body1'
-                color='rgba(255, 255, 255, 0.7)'
-                mt={2}
                 maxWidth='600px'
-                mx='auto'>
+                mx='auto'
+                sx={{
+                  color: "#FFFFFF99",
+                  transition: "color 0.6s ease",
+                  fontWeight: 500,
+                  fontFamily: "Figtree",
+                  mt: 2,
+                }}>
                 A seamless banking experience for stablecoin transactions,
                 designed for individuals & businesses.
               </Typography>
             </motion.div>
           </Box>
           <motion.div variants={fadeUp}>
+            <a  href='https://widget.usdtmarketplace.com/'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='button-section'  style={{minWidth:isSmallScreen?"220px":"420px"}} >
             {isSmallScreen ? (
-              <Box
-                className='button-container button-flip-vertical'
-                sx={{ position: "relative", width: "250px", ml: "20px" }}>
-                <div className='flipper flipper-flip-vertical'>
-                  <Button
-                    className='button front'
-                    sx={{
-                      fontFamily: "Figtree",
-                      fontWeight: 700,
-                      color: "#A9EA2E",
-                    }}>
-                    Start Converting Now <NorthEastIcon sx={{ fontSize: 20 }} />
-                  </Button>
-                  <Button
-                    className='button back'
-                    sx={{
-                      fontFamily: "Figtree",
-                      fontWeight: 700,
-                      color: "000",
-                      backgroundColor: "#A9EA2E",
-                    }}>
-                    Start Converting Now <NorthEastIcon sx={{ fontSize: 20 }} />
-                  </Button>
-                </div>
-              </Box>
+              <>
+                <span className='btn front' style={{fontFamily: "Figtree",fontWeight: 700,color: "#A9EA2E",}}>
+                Start Converting Now <NorthEastIcon sx={{ fontSize: 20 }} />
+                </span>
+                <span className='btn back' style={{fontFamily: "Figtree",fontWeight: 700,color: "#000",}}>
+                Start Converting Now <NorthEastIcon sx={{ fontSize: 20 }} />
+                </span>
+              </>
             ) : (
               <>
-                <Box
-                  className='button-container button-flip-vertical'
-                  sx={{ position: "relative", width: "450px" }}>
-                  <div className='flipper flipper-flip-vertical'>
-                    <>
-                      <Button
-                        className='button front'
-                        sx={{
-                          fontFamily: "Figtree",
-                          fontWeight: 700,
-                          width: "100%",
-                          color: "#A9EA2E",
-                        }}>
-                        Start Converting with Secure Banking Partners{" "}
-                        <NorthEastIcon
-                          sx={{ fontSize: 17, marginLeft: "2px" }}
-                        />
-                      </Button>
-                      <Button
-                        className='button back'
-                        sx={{
-                          fontFamily: "Figtree",
-                          fontWeight: 700,
-                          width: "100%",
-                          color: "000",
-                          backgroundColor: "#A9EA2E",
-                        }}>
-                        Start Converting with Secure Banking Partners{" "}
-                        <NorthEastIcon
-                          sx={{ fontSize: 17, marginLeft: "2px" }}
-                        />
-                      </Button>
-                    </>
-                  </div>
-                </Box>
+                <span className='btn front' style={{fontFamily: "Figtree",fontWeight: 700,color: "#A9EA2E",}}>
+                  Start Converting with Secure Banking Partners
+                  <NorthEastIcon sx={{ fontSize: 18,marginLeft: "4px" }} />
+                </span>
+                <span className='btn back' style={{fontFamily: "Figtree",fontWeight: 700,color: "#000",}}>
+                  Start Converting with Secure Banking Partners
+                  <NorthEastIcon sx={{ fontSize: 18, marginLeft: "4px" }} />
+                </span>
               </>
             )}
+            </a>
           </motion.div>
         </Box>
       </motion.div>
