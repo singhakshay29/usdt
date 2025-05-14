@@ -20,25 +20,36 @@ import {containerVariants,fadeUp} from "../../components/Ui/animationVariants";
 const Home = () => {
   const [globalYouSell, setGlobalYouSell] = useState("");
   const [globalYouGet, setGlobalYouGet] = useState("");
+  const [error, setError] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const exchangeRate = 86;
+  const [rates, setRates] = useState(null);
   const isActive =
     (globalYouSell?.length ?? 0) > 0 || (globalYouGet?.length ?? 0) > 0;
-  const handleYouSellInputChange = (event) => {
-    const inputValue = event.target.value;
-    if (/^\d*\.?\d*$/.test(inputValue)) {
-      setGlobalYouSell(inputValue);
-      setGlobalYouGet(
-        inputValue ? (parseFloat(inputValue) * exchangeRate).toFixed(2) : ""
-      );
-    }
-  };
+    const handleYouSellInputChange = (event) => {
+      const inputValue = event.target.value;
+  
+      if (/^\d*\.?\d*$/.test(inputValue)) {
+        // Only allow numbers and decimals
+  
+        if (inputValue && parseFloat(inputValue) > 500) {
+          setError(true);
+          setGlobalYouGet(0);
+        } else {
+          setError(false);
+          setGlobalYouGet(
+            inputValue ? (parseFloat(inputValue) * rates?.inrRateOfframp).toFixed(2) : ""
+          );
+        }
+  
+        setGlobalYouSell(inputValue);
+      }
+    };
   const handleYouGetInputChange = (event) => {
     const inputValue = event.target.value;
     if (/^\d*\.?\d*$/.test(inputValue)) {
       setGlobalYouGet(inputValue);
       setGlobalYouSell(
-        inputValue ? (parseFloat(inputValue) / exchangeRate).toFixed(2) : ""
+        inputValue ? (parseFloat(inputValue) / rates?.inrRateOfframp).toFixed(2) : ""
       );
     }
   };
@@ -64,6 +75,28 @@ const Home = () => {
       });
     };
   }, []);
+  useEffect(() => {
+    fetchRates();
+  }, []);
+  const fetchRates = async () => {
+    try {
+      const response = await fetch('https://api.usdtmarketplace.com/api/v1/user/getRates', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (!response.ok) {
+        console.log("Error fetching rates:", response?.error);
+        return;
+      }
+      const res = await response.json();
+      setRates(res?.data[0]);
+    } catch (err) {
+      console.error("Error fetching rates:", err);
+    }
+  };
   return (
     <>
       <AnimatePresence>
@@ -393,6 +426,10 @@ const Home = () => {
                             type='text'
                             variant='outlined'
                             inputMode='numeric'
+                            value={globalYouSell}
+                            onChange={handleYouSellInputChange}
+                            error={error}
+                            helperText={error ? "Maximum value is 500" : " "}
                             inputProps={{
                               style: {
                                 textAlign: "right",
@@ -402,8 +439,6 @@ const Home = () => {
                               },
                             }}
                             sx={{ "& fieldset": { border: "none" } }}
-                            value={globalYouSell}
-                            onChange={handleYouSellInputChange}
                           />
                         </Box>
                       </Box>
@@ -532,7 +567,7 @@ const Home = () => {
                   fontSize='16px'
                   fontFamily='Figtree'
                   fontWeight='600'>
-                  <FaInfoCircle /> 1 USDT = ₹ 86
+                  <FaInfoCircle /> 1 USDT = ₹ {rates?.inrRateOfframp || ""} INR
                 </Box>
                 <Button
                   fullWidth
