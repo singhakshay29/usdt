@@ -16,6 +16,7 @@ import HoverText from "../../components/Ui/HoverText/HoverText";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import { FaDollarSign, FaInfoCircle, FaRupeeSign } from "react-icons/fa";
 import {containerVariants,fadeUp} from "../../components/Ui/animationVariants";
+import ShineBorder from "../../components/Ui/ShineBorder/ShineBorder";
 
 const Home = () => {
   const [globalYouSell, setGlobalYouSell] = useState("");
@@ -342,20 +343,12 @@ const Home = () => {
                     md: "auto",   
                   },
                   zIndex: 1,
-                  "&::before": {
-                    content: '""',
-                    position: "absolute",
-                    inset: 0,
-                    padding: "2px",
-                    borderRadius: "inherit",
-                    background:
-                      "linear-gradient(143.61deg, #A7E92D -16.22%, #222F09 42.86%, rgba(167, 233, 45, 0.8) 101.93%)",
-                    WebkitMask:
-                      "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                    maskComposite: "exclude",
-                    zIndex: -1,
-                  },
+                
                 }}>
+                <ShineBorder
+                className="custom-shine-border"
+                  color={["#A7E92D","#c2f06e"]}
+                >
                 <Box
                   sx={{
                     py: 3,
@@ -599,7 +592,8 @@ const Home = () => {
                   onClick={handleProceed}>
                   Convert now
                   <NorthEastIcon />
-                </Button>
+                </Button>   
+                </ShineBorder>
               </Box>
             </motion.div>
           </Box>

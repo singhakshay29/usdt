@@ -1,0 +1,54 @@
+.shine-border-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-radius: 12px;
+    background-color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .shine-border-container {
+      background-color: black;
+      color: white;
+    }
+  }
+  
+  .shine-border-effect {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    content: '';
+    padding: var(--border-width);
+    border-radius: inherit;
+    will-change: background-position;
+    background-image: var(--background-radial-gradient);
+    background-size: 200% 300%;
+    mask: var(--mask-linear-gradient);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: radialShine var(--duration) linear infinite;
+  }
+  
+  
+  @keyframes radialShine {
+    0% {
+      background-position: 0% 0%;
+    }
+    25% {
+      background-position: 100% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    75% {
+      background-position: 0% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+  
+  

@@ -9,6 +9,28 @@
     background-color: #111;
   }
   
+  .custom-shine-border {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.75rem; 
+    border: 1px solid rgba(0, 0, 0, 0.1); 
+    background-color: var(--background, #fff); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    align-items: center;
+    justify-content: center;
+  }
+  
+
+  @media (min-width: 1024px) {
+    .custom-shine-border {
+      height: 450px;
+    }
+  }
+  
+  
   .subtitle {
     color: #A3FF00;
     font-family: "Figtree",
