@@ -297,19 +297,21 @@ const FeaturesSection = () => {
             justifyContent="center"
             mt={4}
             sx={{
-              px: { xs: 2, sm: 2, md: 4 },
+              px: { xs: 0, sm: 3, md: 4 },
             }}>
-            <Box
+            <Grid
               item
               sx={{
                 display: "grid",
                 gridTemplateColumns: {
                   xs: "1fr",
-                  sm: "1fr",  
-                  md: "1fr",  
+                  sm: "1fr",
+                  md: "1fr",           
                   lg: "repeat(2, 1fr)"
                 },
                 gap: { xs: 2, sm: 3, md: 4 },
+                maxWidth: "1090px",
+                width: "100%",
                 mx: "auto",
                 px: { xs: 0, sm: 3 }, 
               }}>
@@ -320,23 +322,24 @@ const FeaturesSection = () => {
                     : index === 1
                     ? { imageWidth: "72%", mt: "60px" }
                     : index === 2
-                    ? {imageWidth: "72%", mt: "80px" }
+                    ? { imageWidth: "72%", mt: "80px" }
                     : {imageWidth: "72%", mt: "10px"};
                 return (
-                  <Box
+                  <Grid
+                    item
                     key={index}
                     sx={{
                       height: "100%",
-                      position: index === 2 ? "relative" : "relative",
-                      top: { xs: "0px", sm: "0px",md:"0px",lg:index === 2 ? "-9.5rem" : "0px" },
+                      position: index === 2 ? "relative" : "static",
+                      top: { xs: "0", sm: index === 2 ? "-9.5rem" : "0px" },
                     }}>
                     <motion.div variants={fadeUp}>
                       <FeatureCard {...feature} customStyles={customStyles} />
                     </motion.div>
-                  </Box>
+                  </Grid>
                 );
               })}
-            </Box>
+            </Grid>
           </Grid>
         </Box>
       </motion.div>
