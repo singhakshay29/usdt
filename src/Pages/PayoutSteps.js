@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import stepOne from "../assets/Iphone 14 - 2.svg";
 import stepTwo from "../assets/Iphone 14Two.svg";
 import correct from "../assets/green.png";
@@ -63,20 +63,6 @@ const phoneImageVariant = {
   },
 };
 
-const textVariants = {
-  rest: { opacity: 1, x: 0, },
-  hover: { opacity: 1,x: 150, transition: { duration: 0.9 } },
-};
-
-const titleVariants = {
-  rest: { letterSpacing: "0px", color: "#000",x: 0,},
-  hover: {
-    letterSpacing: "1px",
-    color: "#04befe",
-    x: 70,
-    transition: { duration: 0.9, ease: "easeOut" },
-  },
-};
 
 const descVariants = {
   rest: { x: 0, opacity: 1, color: "#00000099", },
@@ -105,7 +91,7 @@ const PayoutSteps = () => {
             textAlign: "center",
             background: "#111",
           }}>
-          <Box sx={{ maxWidth: "900px" }}>
+          <Box >
             <motion.div variants={fadeUp}>
               <Typography
                 variant='body2'
@@ -149,18 +135,33 @@ const PayoutSteps = () => {
             </motion.div>
           </Box>
           <motion.div variants={fadeUp}>
-          <Grid
-            container
-            spacing={3}
-            sx={{ p: { xs: 2, sm: 7 } }}
-            justifyContent='space-between'>
+          <Box
+            sx={{ 
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              gap: { xs: 4, sm: 4 },
+              p: { xs: 2, sm: 4 } }}
+            >
             {steps.map((step, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
+              <Box key={index}
+              sx={{
+                flex: {
+                  xs: "0 1 100%",   
+                  sm: "0 1 47%",    
+                  md: "0 1 30%",    
+                },
+                display: "flex",
+                justifyContent: "center",
+              }}
+              >
                <motion.div
                   initial="rest"
                   whileHover="hover"
                   animate="rest"
                   style={{
+                    display: "flex",
+                    flexDirection: "column",
                     position:"relative",
                     borderRadius: "16px",
                     textAlign: "left",
@@ -168,6 +169,8 @@ const PayoutSteps = () => {
                     boxShadow: 3,
                     overflow: "hidden",
                     padding:0,
+                    maxWidth: "450px", 
+                    width: "100%",  
                   }}>
                       <motion.img
                       src={flowerBg}
@@ -184,11 +187,9 @@ const PayoutSteps = () => {
                       }}
                       />
                       <motion.div
-                      variants={{}} 
                       style={{ position: "relative", zIndex: 1 }}
                       >
                         <Box sx={{ p: 1.5, height: { sm: "9rem" } }}>
-                        <motion.div variants={textVariants}>
                     <Typography
                       variant='caption'
                       sx={{
@@ -197,9 +198,7 @@ const PayoutSteps = () => {
                         fontSize:"18px",
                       }}>
                     {step.step}
-                    </Typography> 
-                        </motion.div>
-                        <motion.div variants={titleVariants}>
+                    </Typography>   
                     <Typography
                       variant='h6'
                       className="title"
@@ -207,12 +206,11 @@ const PayoutSteps = () => {
                         fontWeight: "800",
                         color: "#000000",
                         fontFamily: "Figtree",
-                        fontSize: "32px",
+                        fontSize: "28px",
                         mt: 1,
                       }}>
-                      <GradualSpacing text={step.title} fontSize="28px"/>
+                     {step.title}
                     </Typography>
-                    </motion.div>
                     <motion.div variants={descVariants}
                     style={{ display: "flex", alignItems: "center", gap: "8px" }}
                     >
@@ -232,16 +230,17 @@ const PayoutSteps = () => {
                       sx={{
                         fontWeight: 600,
                         fontFamily: "Figtree",
-                        fontSize: "18px",
+                        fontSize: "20px",
                         mt: 1,
                       }}>
-                      <GradualSpacing text={step.description} />
+                     {step.description}
                     </Typography>
                     </motion.div>
                     </Box>
                       </motion.div>
                   <Box
                     sx={{
+                      mt: "auto",
                       position: "relative",
                       maxHeight: "400px",
                       borderBottomLeftRadius: "16px",
@@ -265,9 +264,9 @@ const PayoutSteps = () => {
                       />
                     </Box>
                 </motion.div>
-              </Grid>
+              </Box>
             ))}
-          </Grid>
+          </Box>
           </motion.div>
         </Box>
       </motion.div>

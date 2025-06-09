@@ -343,10 +343,10 @@ const Home = () => {
                     md: "auto",   
                   },
                   zIndex: 1,
-                
+                  bgcolor: "#000"
                 }}>
                 <ShineBorder
-                className="custom-shine-border"
+                className="custom-shine-border bgColor"
                   color={["#A7E92D","#c2f06e"]}
                 >
                 <Box

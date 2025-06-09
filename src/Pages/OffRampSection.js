@@ -98,7 +98,7 @@ const OffRampSection = () => {
                 flexDirection: "column",
                 justifyContent: "space-between",
                 minHeight: "200px",
-                maxWidth: { xs: "100%", sm: "350px" },
+                maxWidth: { xs: "100%", sm: "100%" },
               }}>
                 <motion.div variants={fadeUp}>
               <Typography
